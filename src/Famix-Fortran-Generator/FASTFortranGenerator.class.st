@@ -1,27 +1,25 @@
 Class {
-	#name : #FortranMetamodelGenerator,
+	#name : #FASTFortranGenerator,
 	#superclass : #FamixMetamodelGenerator,
 	#instVars : [
-		'blComment',
-		'blDo',
-		'blIf',
-		'blStatement',
-		'block',
-		'comment',
-		'doSpecification',
-		'puSubroutine',
-		'programFile',
-		'programUnit',
-		'puMain',
-		'puModule',
-		'puFunction',
-		'puBlockData',
-		'puComment',
-		'blForall',
-		'blCase',
-		'blDoWhile',
-		'blAssociate',
-		'blInterface',
+		'addition',
+		'subtraction',
+		'multiplication',
+		'division',
+		'exponentiation',
+		'concatenation',
+		'gt',
+		'gte',
+		'lt',
+		'lte',
+		'eq',
+		'ne',
+		'or',
+		'xOr',
+		'and',
+		'equivalent',
+		'notEquivalent',
+		'binCustom',
 		'statement',
 		'stDeclaration',
 		'stStructure',
@@ -46,51 +44,6 @@ Class {
 		'stExternal',
 		'stIntrinsic',
 		'stCommon',
-		'attrAllocatable',
-		'attrAsynchronous',
-		'attrDimension',
-		'attrExternal',
-		'attrIntent',
-		'attrIntrinsic',
-		'attrOptional',
-		'attrParameter',
-		'attrPointer',
-		'attrPrivate',
-		'attrProtected',
-		'attrPublic',
-		'attrSave',
-		'attrSuffix',
-		'attrTarget',
-		'attrValue',
-		'attrVolatile',
-		'addition',
-		'subtraction',
-		'multiplication',
-		'division',
-		'exponentiation',
-		'concatenation',
-		'gt',
-		'gte',
-		'lt',
-		'lte',
-		'eq',
-		'ne',
-		'or',
-		'xOr',
-		'and',
-		'equivalent',
-		'notEquivalent',
-		'binCustom',
-		'expression',
-		'expValue',
-		'expBinary',
-		'expUnary',
-		'expSubscript',
-		'expDataRef',
-		'expFunctionCall',
-		'expImpliedDo',
-		'expInitialisation',
-		'expReturnSpec',
 		'stEquivalence',
 		'stFormat',
 		'stImplicit',
@@ -153,47 +106,32 @@ Class {
 		'stImport',
 		'stEnum',
 		'stEnumerator',
-		'stEndEnum'
+		'stEndEnum',
+		'block',
+		'blStatement',
+		'blForall',
+		'blIf',
+		'blCase',
+		'blDo',
+		'blDoWhile',
+		'blAssociate',
+		'blInterface',
+		'expression',
+		'expValue',
+		'expBinary',
+		'expUnary',
+		'expSubscript',
+		'expDataRef',
+		'expFunctionCall',
+		'expImpliedDo',
+		'expInitialisation',
+		'expReturnSpec'
 	],
-	#category : #'Fortran-Model-Generator'
+	#category : #'Famix-Fortran-Generator'
 }
 
-{ #category : #accessing }
-FortranMetamodelGenerator class >> packageName [
-
-	^ #'Fortran-Model'
-]
-
-{ #category : #accessing }
-FortranMetamodelGenerator class >> prefix [
-
-	^ #'Fortran'
-]
-
 { #category : #definition }
-FortranMetamodelGenerator >> defineAllAttributes [
-	attrAllocatable := builder newClassNamed: #AttrAllocatable.
-	attrAsynchronous := builder newClassNamed: #AttrAsynchronous.
-	attrDimension := builder newClassNamed: #AttrDimension.
-	attrExternal := builder newClassNamed: #AttrExternal.
-	attrIntent := builder newClassNamed: #AttrIntent.
-	attrIntrinsic := builder newClassNamed: #AttrIntrinsic.
-	attrOptional := builder newClassNamed: #AttrOptional.
-	attrParameter := builder newClassNamed: #AttrParameter.
-	attrPointer := builder newClassNamed: #AttrPointer.
-	attrPrivate := builder newClassNamed: #AttrPrivate.
-	attrProtected := builder newClassNamed: #AttrProtected.
-	attrPublic := builder newClassNamed: #AttrPublic.
-	attrSave := builder newClassNamed: #AttrSave.
-	attrSuffix := builder newClassNamed: #AttrSuffix.
-	attrTarget := builder newClassNamed: #AttrTarget.
-	attrValue := builder newClassNamed: #AttrValue.
-	attrVolatile := builder newClassNamed: #AttrVolatile.
-
-]
-
-{ #category : #definition }
-FortranMetamodelGenerator >> defineAllBinariesOps [
+FASTFortranGenerator >> defineClassesBinariesOps [
 	addition := builder newClassNamed: #Addition.
 	subtraction := builder newClassNamed: #Subtraction.
 	multiplication := builder newClassNamed: #Multiplication.
@@ -216,7 +154,7 @@ FortranMetamodelGenerator >> defineAllBinariesOps [
 ]
 
 { #category : #definition }
-FortranMetamodelGenerator >> defineAllBlocks [
+FASTFortranGenerator >> defineClassesBlocks [
 	block := builder newClassNamed: #Block.
 	blStatement := builder newClassNamed: #BlStatement.
 	blForall := builder newClassNamed: #BlForall.
@@ -225,12 +163,11 @@ FortranMetamodelGenerator >> defineAllBlocks [
 	blDo := builder newClassNamed: #BlDo.
 	blDoWhile := builder newClassNamed: #BlDoWhile.
 	blAssociate := builder newClassNamed: #BlAssociate.
-	blInterface := builder newClassNamed: #BlInterface.	
-	blComment := builder newClassNamed: #BlComment.
+	blInterface := builder newClassNamed: #BlInterface
 ]
 
 { #category : #definition }
-FortranMetamodelGenerator >> defineAllExpressions [
+FASTFortranGenerator >> defineClassesExpressions [
 	expression := builder newClassNamed: #Expression.
 	expValue := builder newClassNamed: #ExpValue.
 	expBinary := builder newClassNamed: #ExpBinary.
@@ -245,7 +182,7 @@ FortranMetamodelGenerator >> defineAllExpressions [
 ]
 
 { #category : #definition }
-FortranMetamodelGenerator >> defineAllStatements [
+FASTFortranGenerator >> defineClassesStatements [
 	statement := builder newClassNamed: #Statement.
 	stDeclaration := builder newClassNamed: #StDeclaration.
 	stStructure := builder newClassNamed: #StStructure.
@@ -333,50 +270,4 @@ FortranMetamodelGenerator >> defineAllStatements [
 	stEnumerator := build newClassNamed: #StEnumerator.
 	stEndEnum := build newClassNamed: #StEndEnum.
 	
-]
-
-{ #category : #definition }
-FortranMetamodelGenerator >> defineClasses [
-	super defineClasses.
-	
-	self defineAllAttributes.
-	self defineAllBinariesOps.	
-	self defineAllBlocks.
-	self defineAllExpressions.
-	self defineAllStatements.
-	
-	
-	comment := builder newClassNamed: #Comment.
-	
-	doSpecification := builder newClassNamed: #DoSpecification.
-	
-	programUnit := builder newClassNamed: #ProgramUnit.
-	puSubroutine := builder newClassNamed: #PUSubroutine.
-	programFile := builder newClassNamed: #ProgramFile.
-	puMain := builder newClassNamed: #PUMain.
-	puModule := builder newClassNamed: #PUModule.
-	puFunction := builder newClassNamed: #PUFunction.
-	puBlockData := builder newClassNamed: #PUBlockData.
-	programUnit := builder newClassNamed: #ProgramUnit.
-	puComment := builder newClassNamed: #PUComment.
-	
-	
-	
-]
-
-{ #category : #definition }
-FortranMetamodelGenerator >> defineHierarchy [
-	super defineHierarchy.
-]
-
-{ #category : #definition }
-FortranMetamodelGenerator >> defineProperties [
-    super defineProperties.
-
-    programFile property: #name type: #String.
-    programFile property: #body type: #String.
-
-    puSubroutine property: #image type: #String.
-    puSubroutine property: #owned type: #Boolean
-
 ]
