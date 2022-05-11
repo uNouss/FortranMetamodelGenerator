@@ -128,14 +128,13 @@ FamixFortranGenerator >> defineHierarchy [
 	tProgramUnit --|> #TWithComments.
 	tProgramUnit --|> #TWithAccesses.
 	
-	programFile --|> #TWithFiles.
 	programFile --|> #TCompilationUnit.
 
-	externalProcedure --|> #TWithStatements.
 	externalProcedure --|> #TInvocable.
 	externalProcedure --|> #THasSignature.
 	externalProcedure --|> #TNamedEntity.
 	externalProcedure --|> #TWithParameters.
+	externalProcedure --|> #TLocalVariable.
 	externalProcedure --|> tProgramUnit.
 	
 	subroutine --|> externalProcedure.
@@ -144,14 +143,18 @@ FamixFortranGenerator >> defineHierarchy [
 	puFunction --|> #TFunction.
 	
 	puBlockData --|> tProgramUnit.
+	
+	puMain --|> tProgramUnit.
+	puModule --|> tProgramUnit.
 
 	parameter --|> #TParameter.
+	parameter --|> variable.
 	
 	variable --|> #TStructuralEntity.
+	variable --|> #TAccessible.
 	
 	puComment --|> #TComment.
 	puComment --|> #TSourceEntity.
-
 ]
 
 { #category : #definition }
