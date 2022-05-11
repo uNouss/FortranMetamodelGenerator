@@ -4,16 +4,16 @@ Class {
 	#instVars : [
 		'subroutine',
 		'programFile',
-		'puMain',
-		'puModule',
-		'puFunction',
-		'puBlockData',
-		'puComment',
 		'variable',
 		'parameter',
 		'externalProcedure',
 		'tProgramUnit',
-		'tWithProgramUnits'
+		'tWithProgramUnits',
+		'comment',
+		'blockData',
+		'function',
+		'program',
+		'module'
 	],
 	#category : #'Famix-Fortran-Generator'
 }
@@ -42,9 +42,33 @@ FamixFortranGenerator class >> submetamodels [
 ]
 
 { #category : #comments }
+FamixFortranGenerator >> commentBlockData [
+	self flag: #TODO. "complete comment"
+	^ 'BlockData'
+]
+
+{ #category : #comments }
+FamixFortranGenerator >> commentComment [
+	self flag: #TODO. "complete comment"
+	^ 'Comment'
+]
+
+{ #category : #comments }
 FamixFortranGenerator >> commentExternalProcedure [
 	self flag: #TODO. "complete comment"
 	^ 'ExternalProcedure'
+]
+
+{ #category : #comments }
+FamixFortranGenerator >> commentFunction [
+	self flag: #TODO. "complete comment"
+	^ 'Function'
+]
+
+{ #category : #comments }
+FamixFortranGenerator >> commentModule [
+	self flag: #TODO. "complete comment"
+	^ 'Module'
 ]
 
 { #category : #comments }
@@ -54,39 +78,15 @@ FamixFortranGenerator >> commentParameter [
 ]
 
 { #category : #comments }
-FamixFortranGenerator >> commentProgramFile [
-	self flag: #TODO. "complete comment"
-	^ 'ProgramFile'
-]
-
-{ #category : #comments }
-FamixFortranGenerator >> commentPuBlockData [
-	self flag: #TODO. "complete comment"
-	^ 'BlockData'
-]
-
-{ #category : #comments }
-FamixFortranGenerator >> commentPuComment [
-	self flag: #TODO. "complete comment"
-	^ 'Comment'
-]
-
-{ #category : #comments }
-FamixFortranGenerator >> commentPuFunction [
-	self flag: #TODO. "complete comment"
-	^ 'Function'
-]
-
-{ #category : #comments }
-FamixFortranGenerator >> commentPuMain [
+FamixFortranGenerator >> commentProgram [
 	self flag: #TODO. "complete comment"
 	^ 'PROGRAM'
 ]
 
 { #category : #comments }
-FamixFortranGenerator >> commentPuModule [
+FamixFortranGenerator >> commentProgramFile [
 	self flag: #TODO. "complete comment"
-	^ 'Module'
+	^ 'ProgramFile'
 ]
 
 { #category : #comments }
@@ -107,11 +107,11 @@ FamixFortranGenerator >> defineClasses [
 
 	subroutine := builder newClassNamed: #Subroutine comment: self commentSubroutine.
 	programFile := builder newClassNamed: #ProgramFile comment: self commentProgramFile.
-	puMain := builder newClassNamed: #PUMain comment: self commentPuMain.
-	puModule := builder newClassNamed: #PUModule comment: self commentPuModule.
-	puFunction := builder newClassNamed: #PUFunction comment: self commentPuFunction.
-	puBlockData := builder newClassNamed: #PUBlockData comment: self commentPuBlockData.
-	puComment := builder newClassNamed: #PUComment comment: self commentPuComment.
+	program := builder newClassNamed: #Program comment: self commentProgram.
+	module := builder newClassNamed: #Module comment: self commentModule.
+	function := builder newClassNamed: #Function comment: self commentFunction.
+	blockData := builder newClassNamed: #BlockData comment: self commentBlockData.
+	comment := builder newClassNamed: #Comment comment: self commentComment.
 	externalProcedure := builder newClassNamed: #ExternalProcedure comment: self commentExternalProcedure.
 
 	variable := builder newClassNamed: #Variable comment: self commentVariable.
@@ -124,37 +124,35 @@ FamixFortranGenerator >> defineHierarchy [
 	super defineHierarchy.
 
 	tProgramUnit --|> #TWithStatements.
-	tProgramUnit --|> #TSourceEntity.
 	tProgramUnit --|> #TWithComments.
-	tProgramUnit --|> #TWithAccesses.
+	tProgramUnit --|> #TNamedEntity.
+	tProgramUnit --|> tWithProgramUnits.
 	
-	programFile --|> #TCompilationUnit.
+	programFile --|> tWithProgramUnits.
 
+	externalProcedure --|> tProgramUnit.
 	externalProcedure --|> #TInvocable.
 	externalProcedure --|> #THasSignature.
-	externalProcedure --|> #TNamedEntity.
 	externalProcedure --|> #TWithParameters.
-	externalProcedure --|> #TLocalVariable.
-	externalProcedure --|> tProgramUnit.
+	externalProcedure --|> #TWithLocalVariables.
 	
 	subroutine --|> externalProcedure.
 	
-	puFunction --|> externalProcedure.
-	puFunction --|> #TFunction.
+	function --|> externalProcedure.
+	function --|> #TTypedEntity.
+	"function --|> #TFunction."
 	
-	puBlockData --|> tProgramUnit.
+	blockData --|> tProgramUnit.
 	
-	puMain --|> tProgramUnit.
-	puModule --|> tProgramUnit.
+	program --|> tProgramUnit.
+	module --|> tProgramUnit.
 
 	parameter --|> #TParameter.
-	parameter --|> variable.
 	
-	variable --|> #TStructuralEntity.
-	variable --|> #TAccessible.
+	variable --|> #TLocalVariable.
 	
-	puComment --|> #TComment.
-	puComment --|> #TSourceEntity.
+	comment --|> #TComment.
+	comment --|> #TSourceEntity.
 ]
 
 { #category : #definition }

@@ -1,8 +1,11 @@
+"
+ProgramFile
+"
 Class {
 	#name : #FamixFortranProgramFile,
 	#superclass : #FamixFortranEntity,
-	#traits : 'FamixTWithFiles',
-	#classTraits : 'FamixTWithFiles classTrait',
+	#traits : 'FamixFortranTWithProgramUnits',
+	#classTraits : 'FamixFortranTWithProgramUnits classTrait',
 	#instVars : [
 		'#version => FMProperty'
 	],

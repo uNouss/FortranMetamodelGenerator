@@ -5,45 +5,9 @@ Class {
 }
 
 { #category : #testing }
-FamixFortranImportingContext >> importAttrAllocatable [
+FamixFortranImportingContext >> importBlockData [
 	<generated>
-	^ self import: FamixFortranAttrAllocatable
-]
-
-{ #category : #testing }
-FamixFortranImportingContext >> importAttrDimension [
-	<generated>
-	^ self import: FamixFortranAttrDimension
-]
-
-{ #category : #testing }
-FamixFortranImportingContext >> importAttrIntent [
-	<generated>
-	^ self import: FamixFortranAttrIntent
-]
-
-{ #category : #testing }
-FamixFortranImportingContext >> importAttrPointer [
-	<generated>
-	^ self import: FamixFortranAttrPointer
-]
-
-{ #category : #testing }
-FamixFortranImportingContext >> importAttrSuffix [
-	<generated>
-	^ self import: FamixFortranAttrSuffix
-]
-
-{ #category : #testing }
-FamixFortranImportingContext >> importAttrTarget [
-	<generated>
-	^ self import: FamixFortranAttrTarget
-]
-
-{ #category : #testing }
-FamixFortranImportingContext >> importAttrValue [
-	<generated>
-	^ self import: FamixFortranAttrValue
+	^ self import: FamixFortranBlockData
 ]
 
 { #category : #testing }
@@ -53,45 +17,39 @@ FamixFortranImportingContext >> importComment [
 ]
 
 { #category : #testing }
-FamixFortranImportingContext >> importDoSpecification [
-	<generated>
-	^ self import: FamixFortranDoSpecification
-]
-
-{ #category : #testing }
 FamixFortranImportingContext >> importEntity [
 	<generated>
 	^ self import: FamixFortranEntity
 ]
 
 { #category : #testing }
-FamixFortranImportingContext >> importPUBlockData [
+FamixFortranImportingContext >> importExternalProcedure [
 	<generated>
-	^ self import: FamixFortranPUBlockData
+	^ self import: FamixFortranExternalProcedure
 ]
 
 { #category : #testing }
-FamixFortranImportingContext >> importPUComment [
+FamixFortranImportingContext >> importFunction [
 	<generated>
-	^ self import: FamixFortranPUComment
+	^ self import: FamixFortranFunction
 ]
 
 { #category : #testing }
-FamixFortranImportingContext >> importPUFunction [
+FamixFortranImportingContext >> importModule [
 	<generated>
-	^ self import: FamixFortranPUFunction
+	^ self import: FamixFortranModule
 ]
 
 { #category : #testing }
-FamixFortranImportingContext >> importPUMain [
+FamixFortranImportingContext >> importParameter [
 	<generated>
-	^ self import: FamixFortranPUMain
+	^ self import: FamixFortranParameter
 ]
 
 { #category : #testing }
-FamixFortranImportingContext >> importPUModule [
+FamixFortranImportingContext >> importProgram [
 	<generated>
-	^ self import: FamixFortranPUModule
+	^ self import: FamixFortranProgram
 ]
 
 { #category : #testing }
@@ -107,45 +65,15 @@ FamixFortranImportingContext >> importSubroutine [
 ]
 
 { #category : #testing }
-FamixFortranImportingContext >> shouldImportAttrAllocatable [
+FamixFortranImportingContext >> importVariable [
 	<generated>
-	^ self shouldImport: FamixFortranAttrAllocatable
+	^ self import: FamixFortranVariable
 ]
 
 { #category : #testing }
-FamixFortranImportingContext >> shouldImportAttrDimension [
+FamixFortranImportingContext >> shouldImportBlockData [
 	<generated>
-	^ self shouldImport: FamixFortranAttrDimension
-]
-
-{ #category : #testing }
-FamixFortranImportingContext >> shouldImportAttrIntent [
-	<generated>
-	^ self shouldImport: FamixFortranAttrIntent
-]
-
-{ #category : #testing }
-FamixFortranImportingContext >> shouldImportAttrPointer [
-	<generated>
-	^ self shouldImport: FamixFortranAttrPointer
-]
-
-{ #category : #testing }
-FamixFortranImportingContext >> shouldImportAttrSuffix [
-	<generated>
-	^ self shouldImport: FamixFortranAttrSuffix
-]
-
-{ #category : #testing }
-FamixFortranImportingContext >> shouldImportAttrTarget [
-	<generated>
-	^ self shouldImport: FamixFortranAttrTarget
-]
-
-{ #category : #testing }
-FamixFortranImportingContext >> shouldImportAttrValue [
-	<generated>
-	^ self shouldImport: FamixFortranAttrValue
+	^ self shouldImport: FamixFortranBlockData
 ]
 
 { #category : #testing }
@@ -155,45 +83,39 @@ FamixFortranImportingContext >> shouldImportComment [
 ]
 
 { #category : #testing }
-FamixFortranImportingContext >> shouldImportDoSpecification [
-	<generated>
-	^ self shouldImport: FamixFortranDoSpecification
-]
-
-{ #category : #testing }
 FamixFortranImportingContext >> shouldImportEntity [
 	<generated>
 	^ self shouldImport: FamixFortranEntity
 ]
 
 { #category : #testing }
-FamixFortranImportingContext >> shouldImportPUBlockData [
+FamixFortranImportingContext >> shouldImportExternalProcedure [
 	<generated>
-	^ self shouldImport: FamixFortranPUBlockData
+	^ self shouldImport: FamixFortranExternalProcedure
 ]
 
 { #category : #testing }
-FamixFortranImportingContext >> shouldImportPUComment [
+FamixFortranImportingContext >> shouldImportFunction [
 	<generated>
-	^ self shouldImport: FamixFortranPUComment
+	^ self shouldImport: FamixFortranFunction
 ]
 
 { #category : #testing }
-FamixFortranImportingContext >> shouldImportPUFunction [
+FamixFortranImportingContext >> shouldImportModule [
 	<generated>
-	^ self shouldImport: FamixFortranPUFunction
+	^ self shouldImport: FamixFortranModule
 ]
 
 { #category : #testing }
-FamixFortranImportingContext >> shouldImportPUMain [
+FamixFortranImportingContext >> shouldImportParameter [
 	<generated>
-	^ self shouldImport: FamixFortranPUMain
+	^ self shouldImport: FamixFortranParameter
 ]
 
 { #category : #testing }
-FamixFortranImportingContext >> shouldImportPUModule [
+FamixFortranImportingContext >> shouldImportProgram [
 	<generated>
-	^ self shouldImport: FamixFortranPUModule
+	^ self shouldImport: FamixFortranProgram
 ]
 
 { #category : #testing }
@@ -206,4 +128,10 @@ FamixFortranImportingContext >> shouldImportProgramFile [
 FamixFortranImportingContext >> shouldImportSubroutine [
 	<generated>
 	^ self shouldImport: FamixFortranSubroutine
+]
+
+{ #category : #testing }
+FamixFortranImportingContext >> shouldImportVariable [
+	<generated>
+	^ self shouldImport: FamixFortranVariable
 ]

@@ -26,3 +26,10 @@ FamixFortranEntity >> isBehavioural [
 	<generated>
 	^ false
 ]
+
+{ #category : #testing }
+FamixFortranEntity >> isStructuralEntity [
+
+	<generated>
+	^ false
+]

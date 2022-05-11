@@ -1,3 +1,6 @@
+"
+Comment
+"
 Class {
 	#name : #FamixFortranComment,
 	#superclass : #FamixFortranEntity,
