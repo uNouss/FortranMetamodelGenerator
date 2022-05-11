@@ -162,6 +162,9 @@ FamixFortranGenerator >> defineProperties [
 	(programFile property: #version type: #String)
 		comment: 'Fortran version of the file'.
 	
+	(programFile property: #filename type: #String)
+		comment: 'Fortran name of the file'.
+	
 	((tWithProgramUnits property: #programUnits)
 		comment: 'ProgramUnits contained in the programFile')
 		<>-*

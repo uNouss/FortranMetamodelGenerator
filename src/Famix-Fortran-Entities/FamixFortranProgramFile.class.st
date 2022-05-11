@@ -7,6 +7,7 @@ Class {
 	#traits : 'FamixFortranTWithProgramUnits',
 	#classTraits : 'FamixFortranTWithProgramUnits classTrait',
 	#instVars : [
+		'#filename => FMProperty',
 		'#version => FMProperty'
 	],
 	#category : #'Famix-Fortran-Entities-Entities'
@@ -19,6 +20,21 @@ FamixFortranProgramFile class >> annotation [
 	<package: #'Famix-Fortran-Entities'>
 	<generated>
 	^self
+]
+
+{ #category : #accessing }
+FamixFortranProgramFile >> filename [
+
+	<FMProperty: #filename type: #String>
+	<generated>
+	<FMComment: 'Fortran name of the file'>
+	^ filename
+]
+
+{ #category : #accessing }
+FamixFortranProgramFile >> filename: anObject [
+	<generated>
+	filename := anObject
 ]
 
 { #category : #accessing }
