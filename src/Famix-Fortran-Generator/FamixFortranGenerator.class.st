@@ -2,28 +2,27 @@ Class {
 	#name : #FamixFortranGenerator,
 	#superclass : #FamixMetamodelGenerator,
 	#instVars : [
-		'attrAllocatable',
-		'attrDimension',
-		'attrIntent',
-		'attrPointer',
-		'attrSuffix',
-		'attrTarget',
-		'attrValue',
-		'comment',
-		'doSpecification',
-		'programUnit',
+		'subroutine',
 		'programFile',
 		'puMain',
 		'puModule',
 		'puFunction',
 		'puBlockData',
 		'puComment',
-		'subroutine',
-		'tWithProgramUnits',
-		'tProgramUnit'
+		'variable',
+		'parameter',
+		'externalProcedure',
+		'tProgramUnit',
+		'tWithProgramUnits'
 	],
 	#category : #'Famix-Fortran-Generator'
 }
+
+{ #category : #generating }
+FamixFortranGenerator class >> generate [ 
+	<script>
+	^ super generate
+]
 
 { #category : #accessing }
 FamixFortranGenerator class >> packageName [
@@ -42,57 +41,116 @@ FamixFortranGenerator class >> submetamodels [
 	^ {FamixGenerator}
 ]
 
+{ #category : #comments }
+FamixFortranGenerator >> commentExternalProcedure [
+	self flag: #TODO. "complete comment"
+	^ 'ExternalProcedure'
+]
+
+{ #category : #comments }
+FamixFortranGenerator >> commentParameter [
+	self flag: #TODO. "complete comment"
+	^ 'Parameter'
+]
+
+{ #category : #comments }
+FamixFortranGenerator >> commentProgramFile [
+	self flag: #TODO. "complete comment"
+	^ 'ProgramFile'
+]
+
+{ #category : #comments }
+FamixFortranGenerator >> commentPuBlockData [
+	self flag: #TODO. "complete comment"
+	^ 'BlockData'
+]
+
+{ #category : #comments }
+FamixFortranGenerator >> commentPuComment [
+	self flag: #TODO. "complete comment"
+	^ 'Comment'
+]
+
+{ #category : #comments }
+FamixFortranGenerator >> commentPuFunction [
+	self flag: #TODO. "complete comment"
+	^ 'Function'
+]
+
+{ #category : #comments }
+FamixFortranGenerator >> commentPuMain [
+	self flag: #TODO. "complete comment"
+	^ 'PROGRAM'
+]
+
+{ #category : #comments }
+FamixFortranGenerator >> commentPuModule [
+	self flag: #TODO. "complete comment"
+	^ 'Module'
+]
+
+{ #category : #comments }
+FamixFortranGenerator >> commentSubroutine [
+	self flag: #TODO. "complete comment"
+	^ 'Subroutine'
+]
+
+{ #category : #comments }
+FamixFortranGenerator >> commentVariable [
+	self flag: #TODO. "complete comment"
+	^ 'Variable'
+]
+
 { #category : #definition }
 FamixFortranGenerator >> defineClasses [
 	super defineClasses.
-	
-	attrAllocatable := builder newClassNamed: #AttrAllocatable.
-	attrDimension := builder newClassNamed: #AttrDimension.
-	attrIntent := builder newClassNamed: #AttrIntent.
 
-	attrPointer := builder newClassNamed: #AttrPointer.
+	subroutine := builder newClassNamed: #Subroutine comment: self commentSubroutine.
+	programFile := builder newClassNamed: #ProgramFile comment: self commentProgramFile.
+	puMain := builder newClassNamed: #PUMain comment: self commentPuMain.
+	puModule := builder newClassNamed: #PUModule comment: self commentPuModule.
+	puFunction := builder newClassNamed: #PUFunction comment: self commentPuFunction.
+	puBlockData := builder newClassNamed: #PUBlockData comment: self commentPuBlockData.
+	puComment := builder newClassNamed: #PUComment comment: self commentPuComment.
+	externalProcedure := builder newClassNamed: #ExternalProcedure comment: self commentExternalProcedure.
 
-	attrSuffix := builder newClassNamed: #AttrSuffix.
-	attrTarget := builder newClassNamed: #AttrTarget.
-	attrValue := builder newClassNamed: #AttrValue.
+	variable := builder newClassNamed: #Variable comment: self commentVariable.
+	parameter := builder newClassNamed: #Parameter comment: self commentParameter.
 
-	
-	
-	comment := builder newClassNamed: #Comment.
-
-	doSpecification := builder newClassNamed: #DoSpecification.
-	
-
-	subroutine := builder newClassNamed: #Subroutine.
-	programFile := builder newClassNamed: #ProgramFile.
-	puMain := builder newClassNamed: #PUMain.
-	puModule := builder newClassNamed: #PUModule.
-	puFunction := builder newClassNamed: #PUFunction.
-	puBlockData := builder newClassNamed: #PUBlockData.
-	puComment := builder newClassNamed: #PUComment.
-	
-	
-	
 ]
 
 { #category : #definition }
 FamixFortranGenerator >> defineHierarchy [
 	super defineHierarchy.
 
-	subroutine --|> #THasSignature.
-	subroutine --|> #TNamedEntity.
-	subroutine --|> #TWithParameters.
-	subroutine --|> tProgramUnit.
-	
-	comment --|> #TComment.
-	comment --|> #TSourceEntity.
-	
 	tProgramUnit --|> #TWithStatements.
 	tProgramUnit --|> #TSourceEntity.
 	tProgramUnit --|> #TWithComments.
+	tProgramUnit --|> #TWithAccesses.
 	
 	programFile --|> #TWithFiles.
+	programFile --|> #TCompilationUnit.
+
+	externalProcedure --|> #TWithStatements.
+	externalProcedure --|> #TInvocable.
+	externalProcedure --|> #THasSignature.
+	externalProcedure --|> #TNamedEntity.
+	externalProcedure --|> #TWithParameters.
+	externalProcedure --|> tProgramUnit.
 	
+	subroutine --|> externalProcedure.
+	
+	puFunction --|> externalProcedure.
+	puFunction --|> #TFunction.
+	
+	puBlockData --|> tProgramUnit.
+
+	parameter --|> #TParameter.
+	
+	variable --|> #TStructuralEntity.
+	
+	puComment --|> #TComment.
+	puComment --|> #TSourceEntity.
 
 ]
 
