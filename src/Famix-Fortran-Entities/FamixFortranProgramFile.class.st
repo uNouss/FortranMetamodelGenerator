@@ -7,8 +7,8 @@ Class {
 	#traits : 'FamixFortranTWithProgramUnits',
 	#classTraits : 'FamixFortranTWithProgramUnits classTrait',
 	#instVars : [
-		'#filename => FMProperty',
-		'#version => FMProperty'
+		'#version => FMProperty',
+		'#filename => FMProperty'
 	],
 	#category : #'Famix-Fortran-Entities-Entities'
 }
