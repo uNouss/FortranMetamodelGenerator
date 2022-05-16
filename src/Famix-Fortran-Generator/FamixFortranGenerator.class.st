@@ -112,20 +112,54 @@ FamixFortranGenerator >> commentVariable [
 
 { #category : #definition }
 FamixFortranGenerator >> defineClasses [
+
 	super defineClasses.
+	programFile := builder
+		               newClassNamed: #ProgramFile
+		               comment: self commentProgramFile.
 
-	subroutine := builder newClassNamed: #Subroutine comment: self commentSubroutine.
-	programFile := builder newClassNamed: #ProgramFile comment: self commentProgramFile.
-	program := builder newClassNamed: #Program comment: self commentProgram.
+	subroutine := builder
+		              newClassNamed: #Subroutine
+		              comment: self commentSubroutine.
+	subroutine withTesting.
+
+
+	program := builder
+		           newClassNamed: #Program
+		           comment: self commentProgram.
+	program withTesting.
+
 	module := builder newClassNamed: #Module comment: self commentModule.
-	function := builder newClassNamed: #Function comment: self commentFunction.
-	blockData := builder newClassNamed: #BlockData comment: self commentBlockData.
-	comment := builder newClassNamed: #Comment comment: self commentComment.
-	externalProcedure := builder newClassNamed: #ExternalProcedure comment: self commentExternalProcedure.
+	module withTesting.
 
-	variable := builder newClassNamed: #Variable comment: self commentVariable.
-	parameter := builder newClassNamed: #Parameter comment: self commentParameter.
+	function := builder
+		            newClassNamed: #Function
+		            comment: self commentFunction.
+	function withTesting.
 
+	blockData := builder
+		             newClassNamed: #BlockData
+		             comment: self commentBlockData.
+	blockData withTesting.
+
+	comment := builder
+		           newClassNamed: #Comment
+		           comment: self commentComment.
+	comment withTesting.
+
+	externalProcedure := builder
+		                     newClassNamed: #ExternalProcedure
+		                     comment: self commentExternalProcedure.
+
+	variable := builder
+		            newClassNamed: #Variable
+		            comment: self commentVariable.
+	variable withTesting.
+
+	parameter := builder
+		             newClassNamed: #Parameter
+		             comment: self commentParameter.
+	parameter withTesting.
 ]
 
 { #category : #definition }
