@@ -5,23 +5,44 @@ Class {
 }
 
 { #category : #'private - utilities' }
+FamixFortranTest class >> blockData [
+
+	^ self blockData: 'bd'
+]
+
+{ #category : #'private - utilities' }
+FamixFortranTest class >> blockData: blockDataName [
+
+	^ FamixFortranBlockData new
+		  name: blockDataName;
+		  yourself
+]
+
+{ #category : #'accessing - comment' }
+FamixFortranTest class >> comment [
+
+	^ self comment: 'some comment'
+]
+
+{ #category : #'accessing - comment' }
+FamixFortranTest class >> comment: aComment [
+
+	^ FamixFortranComment new
+		  content: aComment;
+		  yourself
+]
+
+{ #category : #'private - utilities' }
 FamixFortranTest class >> function [
 	^ self function: 'fct'
 ]
 
 { #category : #'private - utilities' }
 FamixFortranTest class >> function: functionName [
-	^ FamixFortranPUFunction new name: functionName; yourself.
-]
 
-{ #category : #'private - utilities' }
-FamixFortranTest class >> invocationFrom: aCaller target: anEntity [
-	^ FamixFortranInvocation new caller: aCaller; target: anEntity; yourself.
-]
-
-{ #category : #'private - utilities' }
-FamixFortranTest class >> invocationFrom: aCaller to: anEntity [
-	^ FamixFortranInvocation new caller: aCaller; target: anEntity; yourself.
+	^ FamixFortranFunction new
+		  name: functionName;
+		  yourself
 ]
 
 { #category : #'private - utilities' }
@@ -41,7 +62,10 @@ FamixFortranTest class >> program [
 
 { #category : #'private - utilities' }
 FamixFortranTest class >> program: programName [
-	^ FamixFortranPUMain new name: programName; yourself.
+
+	^ FamixFortranProgram new
+		  name: programName;
+		  yourself
 ]
 
 { #category : #'private - utilities' }
@@ -51,12 +75,17 @@ FamixFortranTest class >> programFile [
 
 { #category : #'private - utilities' }
 FamixFortranTest class >> programFile: fileName [
-	^ FamixFortranProgramFile new name: fileName; version: 'FORTRAN77'; yourself.
+
+	^ FamixFortranProgramFile new
+		  filename: fileName;
+		  version: 'Fortran77';
+		  yourself
 ]
 
 { #category : #'private - utilities' }
 FamixFortranTest class >> subroutine [
-	^ self subroutine: 'sbrouine'
+
+	^ self subroutine: 'sbroutine'
 ]
 
 { #category : #'private - utilities' }
@@ -72,6 +101,37 @@ FamixFortranTest class >> variable [
 { #category : #'private - utilities' }
 FamixFortranTest class >> variable: variableName [
 	^ FamixFortranVariable new name: variableName; yourself.
+]
+
+{ #category : #'private - running' }
+FamixFortranTest >> testEntityAccessingLocalVariableOfItsContainer: aContainer [
+	self assert: false
+
+	
+]
+
+{ #category : #tests }
+FamixFortranTest >> testEntityWithComment [
+
+	self testEntityWithComment: self class function.
+	self testEntityWithComment: self class subroutine.
+	self testEntityWithComment: self class program.
+	self testEntityWithComment: self class blockData.
+]
+
+{ #category : #'private - running' }
+FamixFortranTest >> testEntityWithComment: anEntity [
+
+	| comment |
+	comment := self class comment.
+
+	self assert: anEntity comments isEmptyOrNil.
+	self assert: comment container isNil.
+
+	anEntity addComment: comment.
+
+	self assert: anEntity comments size equals: 1.
+	self assert: comment container equals: anEntity
 ]
 
 { #category : #'private - running' }
@@ -102,35 +162,96 @@ FamixFortranTest >> testEntityWithParameter: anEntity [
 
 { #category : #'private - running' }
 FamixFortranTest >> testEntityWithVariable: anEntity [
+
 	| variable1 variable2 |
+
 	variable1 := self class variable: 'variable1'.
 	variable2 := self class variable: 'variable2'.
-	
+
 	self assert: variable1 parentBehaviouralEntity isNil.
-	self assert: anEntity variables isEmpty.
-	
+	self assert: anEntity localVariables isEmpty.
+
 	variable1 parentBehaviouralEntity: anEntity.
-	
+
 	self assert: variable1 parentBehaviouralEntity equals: anEntity.
-	self assert: anEntity variables size equals: 1.
-	self assertCollection: anEntity variables hasSameElements: { variable1 }.
-	
+	self assert: anEntity localVariables size equals: 1.
+	self
+		assertCollection: anEntity localVariables
+		hasSameElements: { variable1 }.
+
 	self assert: variable2 parentBehaviouralEntity isNil.
-	
+
 	variable2 parentBehaviouralEntity: anEntity.
-		
+
 	self assert: variable2 parentBehaviouralEntity equals: anEntity.
-	self assert: anEntity variables size equals: 2.
-	self assertCollection: anEntity variables hasSameElements: { variable1 . variable2 }.
-	
+	self assert: anEntity localVariables size equals: 2.
+	self assertCollection: anEntity localVariables hasSameElements: { 
+			variable1.
+			variable2 }
 ]
 
-{ #category : #'private - running' }
+{ #category : #tests }
+FamixFortranTest >> testFunctionWithAccessingItsLocalVariable [
+
+	| fct |
+	fct := self class function.
+	self class variable parentBehaviouralEntity: fct.
+	self testEntityAccessingLocalVariableOfItsContainer: fct
+]
+
+{ #category : #tests }
 FamixFortranTest >> testFunctionWithParameters [
 	self testEntityWithParameter: self class function.
 ]
 
-{ #category : #'private - running' }
+{ #category : #tests }
+FamixFortranTest >> testFunctionWithVariables [
+
+	self testEntityWithVariable: self class function
+]
+
+{ #category : #tests }
+FamixFortranTest >> testProgramFile [
+
+	| pf |
+	pf := self class programFile.
+	self assert: pf filename equals: 'file.f'.
+	self assert: pf version equals: 'Fortran77'
+]
+
+{ #category : #tests }
+FamixFortranTest >> testProgramFileWithProgramAndSubProgram [
+
+	| pf program function subroutine |
+	pf := self class programFile.
+	program := self class program.
+	function := self class function.
+	subroutine := self class subroutine.
+
+	self assertEmpty: pf programUnits.
+
+	pf
+		addProgramUnit: program;
+		addProgramUnit: function;
+		addProgramUnit: subroutine.
+
+	self assert: pf programUnits size equals: 3.
+
+	self assertCollection: pf programUnits hasSameElements: { 
+			program.
+			function.
+			subroutine }.
+
+	self flag: #FIXME "Tester les contenances. qui contient quoi ?"
+]
+
+{ #category : #tests }
 FamixFortranTest >> testSubroutineWithParameters [
 	self testEntityWithParameter: self class subroutine.
+]
+
+{ #category : #tests }
+FamixFortranTest >> testSubroutineWithVariables [
+
+	self testEntityWithVariable: self class subroutine
 ]
