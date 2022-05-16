@@ -17,3 +17,10 @@ FamixFortranVariable class >> annotation [
 	<generated>
 	^self
 ]
+
+{ #category : #testing }
+FamixFortranVariable >> isVariable [
+
+	<generated>
+	^ true
+]

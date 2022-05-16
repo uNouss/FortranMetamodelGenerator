@@ -15,3 +15,10 @@ FamixFortranSubroutine class >> annotation [
 	<generated>
 	^self
 ]
+
+{ #category : #testing }
+FamixFortranSubroutine >> isSubroutine [
+
+	<generated>
+	^ true
+]

@@ -17,3 +17,10 @@ FamixFortranParameter class >> annotation [
 	<generated>
 	^self
 ]
+
+{ #category : #testing }
+FamixFortranParameter >> isParameter [
+
+	<generated>
+	^ true
+]

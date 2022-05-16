@@ -28,7 +28,63 @@ FamixFortranEntity >> isBehavioural [
 ]
 
 { #category : #testing }
+FamixFortranEntity >> isBlockData [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixFortranEntity >> isComment [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixFortranEntity >> isFunction [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixFortranEntity >> isModule [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixFortranEntity >> isParameter [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixFortranEntity >> isProgram [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixFortranEntity >> isStructuralEntity [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixFortranEntity >> isSubroutine [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixFortranEntity >> isVariable [
 
 	<generated>
 	^ false

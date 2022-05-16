@@ -17,3 +17,10 @@ FamixFortranProgram class >> annotation [
 	<generated>
 	^self
 ]
+
+{ #category : #testing }
+FamixFortranProgram >> isProgram [
+
+	<generated>
+	^ true
+]

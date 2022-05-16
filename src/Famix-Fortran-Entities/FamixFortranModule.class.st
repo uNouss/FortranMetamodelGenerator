@@ -17,3 +17,10 @@ FamixFortranModule class >> annotation [
 	<generated>
 	^self
 ]
+
+{ #category : #testing }
+FamixFortranModule >> isModule [
+
+	<generated>
+	^ true
+]

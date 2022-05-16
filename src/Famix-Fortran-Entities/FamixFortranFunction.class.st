@@ -26,3 +26,10 @@ FamixFortranFunction class >> annotation [
 	<generated>
 	^self
 ]
+
+{ #category : #testing }
+FamixFortranFunction >> isFunction [
+
+	<generated>
+	^ true
+]

@@ -17,3 +17,10 @@ FamixFortranBlockData class >> annotation [
 	<generated>
 	^self
 ]
+
+{ #category : #testing }
+FamixFortranBlockData >> isBlockData [
+
+	<generated>
+	^ true
+]

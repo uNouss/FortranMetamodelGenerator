@@ -17,3 +17,10 @@ FamixFortranComment class >> annotation [
 	<generated>
 	^self
 ]
+
+{ #category : #testing }
+FamixFortranComment >> isComment [
+
+	<generated>
+	^ true
+]
