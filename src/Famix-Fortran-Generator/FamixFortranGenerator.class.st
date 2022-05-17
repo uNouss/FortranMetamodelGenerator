@@ -123,7 +123,6 @@ FamixFortranGenerator >> defineClasses [
 		              comment: self commentSubroutine.
 	subroutine withTesting.
 
-
 	program := builder
 		           newClassNamed: #Program
 		           comment: self commentProgram.
@@ -159,7 +158,7 @@ FamixFortranGenerator >> defineClasses [
 	parameter := builder
 		             newClassNamed: #Parameter
 		             comment: self commentParameter.
-	parameter withTesting.
+	parameter withTesting
 ]
 
 { #category : #definition }
