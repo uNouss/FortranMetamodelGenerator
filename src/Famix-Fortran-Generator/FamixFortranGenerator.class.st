@@ -211,7 +211,10 @@ FamixFortranGenerator >> defineProperties [
 		 'ProgramUnits contained in the programFile')
 	<>-* ((tProgramUnit property: #container) comment:
 			 'Entity containing this programUnit').
-			
+
+	(function property: #isIntrinsic type: #Boolean defaultValue: false) comment:
+		'Function is intrinsic ?'
+
 	"(tProgramUnit property: #srcSpan type: #String) comment:
 		'Fortran position in the file'."
 ]
