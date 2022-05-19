@@ -15,6 +15,9 @@ Class {
 	#superclass : #FamixFortranExternalProcedure,
 	#traits : 'FamixTTypedEntity',
 	#classTraits : 'FamixTTypedEntity classTrait',
+	#instVars : [
+		'#isIntrinsic => FMProperty defaultValue: false'
+	],
 	#category : #'Famix-Fortran-Entities-Entities'
 }
 
@@ -27,9 +30,35 @@ FamixFortranFunction class >> annotation [
 	^self
 ]
 
+{ #category : #initialization }
+FamixFortranFunction >> initialize [
+
+	<generated>
+	super initialize.
+
+	"Default value initialization"
+	isIntrinsic := false.
+
+]
+
 { #category : #testing }
 FamixFortranFunction >> isFunction [
 
 	<generated>
 	^ true
+]
+
+{ #category : #accessing }
+FamixFortranFunction >> isIntrinsic [
+
+	<FMProperty: #isIntrinsic type: #Boolean defaultValue: false>
+	<generated>
+	<FMComment: 'Function is intrinsic ?'>
+	^ isIntrinsic
+]
+
+{ #category : #accessing }
+FamixFortranFunction >> isIntrinsic: anObject [
+	<generated>
+	isIntrinsic := anObject
 ]
