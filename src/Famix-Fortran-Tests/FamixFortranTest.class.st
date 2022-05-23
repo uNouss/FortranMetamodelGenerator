@@ -33,6 +33,19 @@ FamixFortranTest class >> comment: aComment [
 ]
 
 { #category : #'private - utilities' }
+FamixFortranTest class >> externalProcedure [
+
+	^ self externalProcedure: 'extproc'
+]
+
+{ #category : #'private - utilities' }
+FamixFortranTest class >> externalProcedure: aName [
+	^ FamixFortranExternalProcedure new
+		  name: aName;
+		  yourself
+]
+
+{ #category : #'private - utilities' }
 FamixFortranTest class >> function [
 	^ self function: 'fct'
 ]
@@ -104,10 +117,15 @@ FamixFortranTest class >> variable: variableName [
 ]
 
 { #category : #'private - running' }
-FamixFortranTest >> testEntityAccessingLocalVariableOfItsContainer: aContainer [
-	self assert: false
+FamixFortranTest >> testEntityAccessingLocalVariableOfItsContainer: anEntity [
 
-	
+	| fct var |
+	fct := self class function.
+	var := self class variable.
+	var parentBehaviouralEntity: fct.
+
+	self assert: fct localVariables size equals: 1.
+	self assert: fct localVariables first name equals: #var
 ]
 
 { #category : #tests }
@@ -190,13 +208,33 @@ FamixFortranTest >> testEntityWithVariable: anEntity [
 			variable2 }
 ]
 
+{ #category : #'private - running' }
+FamixFortranTest >> testExternalProcedureInvokingEntity: anEntity [
+
+	| extProc invocation |
+	extProc := self class externalProcedure.
+	
+	self assert: anEntity incomingInvocations size equals: 0.
+	self assert: extProc outgoingInvocations size equals: 0.
+	
+	invocation := FamixFortranInvocation new
+					sender: extProc;
+					addCandidate: anEntity.
+	
+	self assert: anEntity incomingInvocations size equals: 1.
+	self assert: anEntity incomingInvocations first equals: invocation.
+	self assert: extProc outgoingInvocations size equals: 1.
+]
+
+{ #category : #tests }
+FamixFortranTest >> testExternalProcedureInvokingFunction [
+	self testExternalProcedureInvokingEntity: self class function.
+]
+
 { #category : #tests }
 FamixFortranTest >> testFunctionWithAccessingItsLocalVariable [
 
-	| fct |
-	fct := self class function.
-	self class variable parentBehaviouralEntity: fct.
-	self testEntityAccessingLocalVariableOfItsContainer: fct
+	self testEntityAccessingLocalVariableOfItsContainer: self class function
 ]
 
 { #category : #tests }

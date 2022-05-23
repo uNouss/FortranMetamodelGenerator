@@ -35,6 +35,12 @@ FamixFortranImportingContext >> importFunction [
 ]
 
 { #category : #testing }
+FamixFortranImportingContext >> importInvocation [
+	<generated>
+	^ self import: FamixFortranInvocation
+]
+
+{ #category : #testing }
 FamixFortranImportingContext >> importModule [
 	<generated>
 	^ self import: FamixFortranModule
@@ -98,6 +104,12 @@ FamixFortranImportingContext >> shouldImportExternalProcedure [
 FamixFortranImportingContext >> shouldImportFunction [
 	<generated>
 	^ self shouldImport: FamixFortranFunction
+]
+
+{ #category : #testing }
+FamixFortranImportingContext >> shouldImportInvocation [
+	<generated>
+	^ self shouldImport: FamixFortranInvocation
 ]
 
 { #category : #testing }

@@ -13,7 +13,9 @@ Class {
 		'blockData',
 		'function',
 		'program',
-		'module'
+		'module',
+		'invocation',
+		'access'
 	],
 	#category : #'Famix-Fortran-Generator'
 }
@@ -39,6 +41,13 @@ FamixFortranGenerator class >> prefix [
 { #category : #accessing }
 FamixFortranGenerator class >> submetamodels [
 	^ {FamixGenerator}
+]
+
+{ #category : #comments }
+FamixFortranGenerator >> accessComment [
+
+	self flag: #TODO. "complete comment"
+	^ 'Access'
 ]
 
 { #category : #comments }
@@ -158,7 +167,13 @@ FamixFortranGenerator >> defineClasses [
 	parameter := builder
 		             newClassNamed: #Parameter
 		             comment: self commentParameter.
-	parameter withTesting
+	parameter withTesting.
+
+	invocation := builder
+		              newClassNamed: #Invocation
+		              comment: self invocationComment.
+
+	"access := builder newClassNamed: #Access comment: self accessComment"
 ]
 
 { #category : #definition }
@@ -190,10 +205,16 @@ FamixFortranGenerator >> defineHierarchy [
 	module --|> tProgramUnit.
 
 	parameter --|> #TParameter.
+
 	variable --|> #TLocalVariable.
 
 	comment --|> #TComment.
-	comment --|> #TSourceEntity
+	comment --|> #TSourceEntity.
+
+	invocation --|> #TInvocation
+
+	"access --|> #TAssociation.
+	access --|> #TAccess"
 ]
 
 { #category : #definition }
@@ -212,8 +233,8 @@ FamixFortranGenerator >> defineProperties [
 	<>-* ((tProgramUnit property: #container) comment:
 			 'Entity containing this programUnit').
 
-	(function property: #isIntrinsic type: #Boolean defaultValue: false) comment:
-		'Function is intrinsic ?'
+	(function property: #isIntrinsic type: #Boolean defaultValue: false) 
+		comment: 'Function is intrinsic ?'.
 
 	"(tProgramUnit property: #srcSpan type: #String) comment:
 		'Fortran position in the file'."
@@ -223,14 +244,22 @@ FamixFortranGenerator >> defineProperties [
 FamixFortranGenerator >> defineTraits [
 
 	super defineTraits.
-	
-	tWithProgramUnits := builder 
-								newTraitNamed: #TWithProgramUnits
-								comment: 'I allow an entity to contain ProgramUnits'.
+
+	tWithProgramUnits := builder
+		                     newTraitNamed: #TWithProgramUnits
+		                     comment:
+		                     'I allow an entity to contain ProgramUnits'.
 	tProgramUnit := builder
-								newTraitNamed: #TProgramUnit
-								comment: 'I represent a ProgramUnit in Fortran.
-								I have a container which is a TWithProgramUnits.' 
+		                newTraitNamed: #TProgramUnit
+		                comment: 'I represent a ProgramUnit in Fortran.
+								I have a container which is a TWithProgramUnits.'.
+]
+
+{ #category : #comments }
+FamixFortranGenerator >> invocationComment [
+
+	self flag: #TODO. "complete comment"
+	^ 'Invocation'
 ]
 
 { #category : #definition }

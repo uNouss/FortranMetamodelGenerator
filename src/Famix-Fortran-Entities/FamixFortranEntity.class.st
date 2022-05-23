@@ -21,6 +21,13 @@ FamixFortranEntity class >> metamodel [
 ]
 
 { #category : #testing }
+FamixFortranEntity >> isAssociation [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixFortranEntity >> isBehavioural [
 
 	<generated>
@@ -43,6 +50,13 @@ FamixFortranEntity >> isComment [
 
 { #category : #testing }
 FamixFortranEntity >> isFunction [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixFortranEntity >> isInvocation [
 
 	<generated>
 	^ false
