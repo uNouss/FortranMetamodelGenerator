@@ -17,3 +17,8 @@ FamixFortranInvocation class >> annotation [
 	<generated>
 	^self
 ]
+
+{ #category : #converting }
+FamixFortranInvocation >> setOwner: owner [
+	self sender: owner.
+]

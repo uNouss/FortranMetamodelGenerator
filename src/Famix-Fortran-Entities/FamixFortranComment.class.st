@@ -24,3 +24,8 @@ FamixFortranComment >> isComment [
 	<generated>
 	^ true
 ]
+
+{ #category : #printing }
+FamixFortranComment >> setOwner: owner [
+	self container: owner.
+]
