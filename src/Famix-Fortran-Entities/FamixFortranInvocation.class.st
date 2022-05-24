@@ -4,8 +4,8 @@ Invocation
 Class {
 	#name : #FamixFortranInvocation,
 	#superclass : #FamixFortranEntity,
-	#traits : 'FamixTInvocation',
-	#classTraits : 'FamixTInvocation classTrait',
+	#traits : 'FamixTHasSignature + FamixTInvocation',
+	#classTraits : 'FamixTHasSignature classTrait + FamixTInvocation classTrait',
 	#category : #'Famix-Fortran-Entities-Entities'
 }
 
@@ -16,9 +16,4 @@ FamixFortranInvocation class >> annotation [
 	<package: #'Famix-Fortran-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #converting }
-FamixFortranInvocation >> setOwner: owner [
-	self sender: owner.
 ]

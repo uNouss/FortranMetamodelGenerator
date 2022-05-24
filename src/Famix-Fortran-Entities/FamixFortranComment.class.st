@@ -1,9 +1,6 @@
-"
-Comment
-"
 Class {
 	#name : #FamixFortranComment,
-	#superclass : #FamixFortranEntity,
+	#superclass : #FamixFortranSourcedEntity,
 	#traits : 'FamixTComment + FamixTSourceEntity',
 	#classTraits : 'FamixTComment classTrait + FamixTSourceEntity classTrait',
 	#category : #'Famix-Fortran-Entities-Entities'
@@ -12,7 +9,7 @@ Class {
 { #category : #meta }
 FamixFortranComment class >> annotation [
 
-	<FMClass: #Comment super: #FamixFortranEntity>
+	<FMClass: #Comment super: #FamixFortranSourcedEntity>
 	<package: #'Famix-Fortran-Entities'>
 	<generated>
 	^self
@@ -25,7 +22,7 @@ FamixFortranComment >> isComment [
 	^ true
 ]
 
-{ #category : #printing }
+{ #category : #testing }
 FamixFortranComment >> setOwner: owner [
-	self container: owner.
+	self container: owner
 ]

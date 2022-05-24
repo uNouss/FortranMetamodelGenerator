@@ -35,6 +35,12 @@ FamixFortranImportingContext >> importFunction [
 ]
 
 { #category : #testing }
+FamixFortranImportingContext >> importIndexedFileAnchor [
+	<generated>
+	^ self import: FamixFortranIndexedFileAnchor
+]
+
+{ #category : #testing }
 FamixFortranImportingContext >> importInvocation [
 	<generated>
 	^ self import: FamixFortranInvocation
@@ -44,6 +50,12 @@ FamixFortranImportingContext >> importInvocation [
 FamixFortranImportingContext >> importModule [
 	<generated>
 	^ self import: FamixFortranModule
+]
+
+{ #category : #testing }
+FamixFortranImportingContext >> importNamedEntity [
+	<generated>
+	^ self import: FamixFortranNamedEntity
 ]
 
 { #category : #testing }
@@ -65,9 +77,39 @@ FamixFortranImportingContext >> importProgramFile [
 ]
 
 { #category : #testing }
+FamixFortranImportingContext >> importSourceAnchor [
+	<generated>
+	^ self import: FamixFortranSourceAnchor
+]
+
+{ #category : #testing }
+FamixFortranImportingContext >> importSourceLanguage [
+	<generated>
+	^ self import: FamixFortranSourceLanguage
+]
+
+{ #category : #testing }
+FamixFortranImportingContext >> importSourceTextAnchor [
+	<generated>
+	^ self import: FamixFortranSourceTextAnchor
+]
+
+{ #category : #testing }
+FamixFortranImportingContext >> importSourcedEntity [
+	<generated>
+	^ self import: FamixFortranSourcedEntity
+]
+
+{ #category : #testing }
 FamixFortranImportingContext >> importSubroutine [
 	<generated>
 	^ self import: FamixFortranSubroutine
+]
+
+{ #category : #testing }
+FamixFortranImportingContext >> importUnknownSourceLanguage [
+	<generated>
+	^ self import: FamixFortranUnknownSourceLanguage
 ]
 
 { #category : #testing }
@@ -107,6 +149,12 @@ FamixFortranImportingContext >> shouldImportFunction [
 ]
 
 { #category : #testing }
+FamixFortranImportingContext >> shouldImportIndexedFileAnchor [
+	<generated>
+	^ self shouldImport: FamixFortranIndexedFileAnchor
+]
+
+{ #category : #testing }
 FamixFortranImportingContext >> shouldImportInvocation [
 	<generated>
 	^ self shouldImport: FamixFortranInvocation
@@ -116,6 +164,12 @@ FamixFortranImportingContext >> shouldImportInvocation [
 FamixFortranImportingContext >> shouldImportModule [
 	<generated>
 	^ self shouldImport: FamixFortranModule
+]
+
+{ #category : #testing }
+FamixFortranImportingContext >> shouldImportNamedEntity [
+	<generated>
+	^ self shouldImport: FamixFortranNamedEntity
 ]
 
 { #category : #testing }
@@ -137,9 +191,39 @@ FamixFortranImportingContext >> shouldImportProgramFile [
 ]
 
 { #category : #testing }
+FamixFortranImportingContext >> shouldImportSourceAnchor [
+	<generated>
+	^ self shouldImport: FamixFortranSourceAnchor
+]
+
+{ #category : #testing }
+FamixFortranImportingContext >> shouldImportSourceLanguage [
+	<generated>
+	^ self shouldImport: FamixFortranSourceLanguage
+]
+
+{ #category : #testing }
+FamixFortranImportingContext >> shouldImportSourceTextAnchor [
+	<generated>
+	^ self shouldImport: FamixFortranSourceTextAnchor
+]
+
+{ #category : #testing }
+FamixFortranImportingContext >> shouldImportSourcedEntity [
+	<generated>
+	^ self shouldImport: FamixFortranSourcedEntity
+]
+
+{ #category : #testing }
 FamixFortranImportingContext >> shouldImportSubroutine [
 	<generated>
 	^ self shouldImport: FamixFortranSubroutine
+]
+
+{ #category : #testing }
+FamixFortranImportingContext >> shouldImportUnknownSourceLanguage [
+	<generated>
+	^ self shouldImport: FamixFortranUnknownSourceLanguage
 ]
 
 { #category : #testing }

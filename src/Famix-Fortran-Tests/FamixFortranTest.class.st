@@ -125,7 +125,7 @@ FamixFortranTest >> testEntityAccessingLocalVariableOfItsContainer: anEntity [
 	var parentBehaviouralEntity: fct.
 
 	self assert: fct localVariables size equals: 1.
-	self assert: fct localVariables first name equals: #var
+	self assert: fct localVariables first name equals: 'var'
 ]
 
 { #category : #tests }
@@ -213,17 +213,18 @@ FamixFortranTest >> testExternalProcedureInvokingEntity: anEntity [
 
 	| extProc invocation |
 	extProc := self class externalProcedure.
-	
+
 	self assert: anEntity incomingInvocations size equals: 0.
 	self assert: extProc outgoingInvocations size equals: 0.
-	
+
 	invocation := FamixFortranInvocation new
-					sender: extProc;
-					addCandidate: anEntity.
-	
+		              sender: extProc;
+		              addCandidate: anEntity.
+
 	self assert: anEntity incomingInvocations size equals: 1.
 	self assert: anEntity incomingInvocations first equals: invocation.
 	self assert: extProc outgoingInvocations size equals: 1.
+	self assert: extProc outgoingInvocations first equals: invocation
 ]
 
 { #category : #tests }

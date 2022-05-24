@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixFortranGenerator,
-	#superclass : #FamixMetamodelGenerator,
+	#superclass : #FamixBasicInfrastructureGenerator,
 	#instVars : [
 		'subroutine',
 		'programFile',
@@ -9,13 +9,13 @@ Class {
 		'externalProcedure',
 		'tProgramUnit',
 		'tWithProgramUnits',
-		'comment',
 		'blockData',
 		'function',
 		'program',
 		'module',
 		'invocation',
-		'access'
+		'srcSpan',
+		'indexedFileAnchor'
 	],
 	#category : #'Famix-Fortran-Generator'
 }
@@ -150,9 +150,6 @@ FamixFortranGenerator >> defineClasses [
 		             comment: self commentBlockData.
 	blockData withTesting.
 
-	comment := builder
-		           newClassNamed: #Comment
-		           comment: self commentComment.
 	comment withTesting.
 
 	externalProcedure := builder
@@ -172,6 +169,10 @@ FamixFortranGenerator >> defineClasses [
 	invocation := builder
 		              newClassNamed: #Invocation
 		              comment: self invocationComment.
+
+	indexedFileAnchor := builder
+		                     newClassNamed: #IndexedFileAnchor
+		                     comment: self indexedFileAnchorComment
 
 	"access := builder newClassNamed: #Access comment: self accessComment"
 ]
@@ -211,7 +212,12 @@ FamixFortranGenerator >> defineHierarchy [
 	comment --|> #TComment.
 	comment --|> #TSourceEntity.
 
-	invocation --|> #TInvocation
+	invocation --|> #TInvocation.
+	invocation --|> #THasSignature.
+
+	indexedFileAnchor --|> sourceAnchor.
+	indexedFileAnchor --|> #TFileNavigation
+
 
 	"access --|> #TAssociation.
 	access --|> #TAccess"
@@ -236,8 +242,8 @@ FamixFortranGenerator >> defineProperties [
 	(function property: #isIntrinsic type: #Boolean defaultValue: false) 
 		comment: 'Function is intrinsic ?'.
 
-	"(tProgramUnit property: #srcSpan type: #String) comment:
-		'Fortran position in the file'."
+	"(tProgramUnit property: #srcSpan type: srcSpan) comment:
+		'Fortran position in the file'"
 ]
 
 { #category : #definition }
@@ -256,6 +262,13 @@ FamixFortranGenerator >> defineTraits [
 ]
 
 { #category : #comments }
+FamixFortranGenerator >> indexedFileAnchorComment [
+
+	self flag: #TODO. "complete comment"
+	^ 'SrcSpan'
+]
+
+{ #category : #comments }
 FamixFortranGenerator >> invocationComment [
 
 	self flag: #TODO. "complete comment"
@@ -267,4 +280,11 @@ FamixFortranGenerator >> newBuilder [
 	^ super newBuilder
 		withImportingContext;
 		yourself
+]
+
+{ #category : #comments }
+FamixFortranGenerator >> sourceAnchorComment [
+
+	self flag: #TODO. "complete comment"
+	^ 'sourceAnchor'
 ]
