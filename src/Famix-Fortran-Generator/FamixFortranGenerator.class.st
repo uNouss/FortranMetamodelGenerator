@@ -15,7 +15,8 @@ Class {
 		'module',
 		'invocation',
 		'srcSpan',
-		'indexedFileAnchor'
+		'indexedFileAnchor',
+		'unresolvedBehavioral'
 	],
 	#category : #'Famix-Fortran-Generator'
 }
@@ -155,6 +156,12 @@ FamixFortranGenerator >> defineClasses [
 	externalProcedure := builder
 		                     newClassNamed: #ExternalProcedure
 		                     comment: self commentExternalProcedure.
+	externalProcedure withTesting.
+
+	unresolvedBehavioral := builder
+		                        newClassNamed: #UnresolvedBehavioral
+		                        comment: 'UnresolvedBehavioral'.
+	unresolvedBehavioral withTesting.
 
 	variable := builder
 		            newClassNamed: #Variable
@@ -195,6 +202,8 @@ FamixFortranGenerator >> defineHierarchy [
 	externalProcedure --|> #TWithParameters.
 	externalProcedure --|> #TWithLocalVariables.
 
+	unresolvedBehavioral --|> externalProcedure.
+
 	subroutine --|> externalProcedure.
 
 	function --|> externalProcedure.
@@ -208,9 +217,6 @@ FamixFortranGenerator >> defineHierarchy [
 	parameter --|> #TParameter.
 
 	variable --|> #TLocalVariable.
-
-	comment --|> #TComment.
-	comment --|> #TSourceEntity.
 
 	invocation --|> #TInvocation.
 	invocation --|> #THasSignature.
@@ -241,9 +247,8 @@ FamixFortranGenerator >> defineProperties [
 
 	(function property: #isIntrinsic type: #Boolean defaultValue: false) 
 		comment: 'Function is intrinsic ?'.
-
-	"(tProgramUnit property: #srcSpan type: srcSpan) comment:
-		'Fortran position in the file'"
+	(comment property: #isEsope type: #Boolean defaultValue: false) 
+		comment: 'It is esope comment ?'
 ]
 
 { #category : #definition }

@@ -17,3 +17,10 @@ FamixFortranExternalProcedure class >> annotation [
 	<generated>
 	^self
 ]
+
+{ #category : #testing }
+FamixFortranExternalProcedure >> isExternalProcedure [
+
+	<generated>
+	^ true
+]

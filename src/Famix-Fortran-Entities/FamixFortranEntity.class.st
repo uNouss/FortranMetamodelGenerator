@@ -49,6 +49,13 @@ FamixFortranEntity >> isComment [
 ]
 
 { #category : #testing }
+FamixFortranEntity >> isExternalProcedure [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixFortranEntity >> isFunction [
 
 	<generated>
@@ -92,6 +99,13 @@ FamixFortranEntity >> isStructuralEntity [
 
 { #category : #testing }
 FamixFortranEntity >> isSubroutine [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixFortranEntity >> isUnresolvedBehavioral [
 
 	<generated>
 	^ false

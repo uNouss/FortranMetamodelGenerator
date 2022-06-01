@@ -113,6 +113,12 @@ FamixFortranImportingContext >> importUnknownSourceLanguage [
 ]
 
 { #category : #testing }
+FamixFortranImportingContext >> importUnresolvedBehavioral [
+	<generated>
+	^ self import: FamixFortranUnresolvedBehavioral
+]
+
+{ #category : #testing }
 FamixFortranImportingContext >> importVariable [
 	<generated>
 	^ self import: FamixFortranVariable
@@ -224,6 +230,12 @@ FamixFortranImportingContext >> shouldImportSubroutine [
 FamixFortranImportingContext >> shouldImportUnknownSourceLanguage [
 	<generated>
 	^ self shouldImport: FamixFortranUnknownSourceLanguage
+]
+
+{ #category : #testing }
+FamixFortranImportingContext >> shouldImportUnresolvedBehavioral [
+	<generated>
+	^ self shouldImport: FamixFortranUnresolvedBehavioral
 ]
 
 { #category : #testing }
