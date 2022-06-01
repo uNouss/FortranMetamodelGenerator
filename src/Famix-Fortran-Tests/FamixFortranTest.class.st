@@ -146,7 +146,7 @@ FamixFortranTest >> testEntityWithComment: anEntity [
 	self assert: anEntity comments isEmptyOrNil.
 	self assert: comment container isNil.
 
-	anEntity addComment: comment.
+	comment setOwner: anEntity.
 
 	self assert: anEntity comments size equals: 1.
 	self assert: comment container equals: anEntity
