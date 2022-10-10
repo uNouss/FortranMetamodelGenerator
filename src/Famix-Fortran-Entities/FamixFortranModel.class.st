@@ -16,3 +16,8 @@ FamixFortranModel class >> annotation [
 	<package: #'Famix-Fortran-Entities'>
 	<generated>
 ]
+
+{ #category : #meta }
+FamixFortranModel class >> canBeImportedFromFile [
+	^ true
+]
