@@ -258,8 +258,8 @@ FamixFortranGenerator >> defineProperties [
 	(function property: #isEsope type: #Boolean defaultValue: false) 
 		comment: 'It is esope Function ?'.
 
-	"(comment property: #isEsope type: #Boolean defaultValue: false) 
-		comment: 'It is esope comment ?'."
+	(comment property: #isEsope type: #Boolean defaultValue: false) 
+		comment: 'It is esope comment ?'.
 		
 	(variable property: #isEsope type: #Boolean defaultValue: false) 
 		comment: 'It is esope variable ?'.

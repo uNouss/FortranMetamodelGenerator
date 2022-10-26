@@ -4,11 +4,11 @@ ProgramFile
 Class {
 	#name : #FamixFortranProgramFile,
 	#superclass : #FamixFortranEntity,
-	#traits : 'FamixFortranTWithProgramUnits',
-	#classTraits : 'FamixFortranTWithProgramUnits classTrait',
+	#traits : 'FamixFortranTWithProgramUnits + FamixTSourceEntity + TEntityMetaLevelDependency',
+	#classTraits : 'FamixFortranTWithProgramUnits classTrait + FamixTSourceEntity classTrait + TEntityMetaLevelDependency classTrait',
 	#instVars : [
-		'#version => FMProperty',
-		'#filename => FMProperty'
+		'#filename => FMProperty',
+		'#version => FMProperty'
 	],
 	#category : #'Famix-Fortran-Entities-Entities'
 }

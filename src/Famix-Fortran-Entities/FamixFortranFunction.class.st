@@ -16,6 +16,7 @@ Class {
 	#traits : 'FamixTTypedEntity',
 	#classTraits : 'FamixTTypedEntity classTrait',
 	#instVars : [
+		'#isEsope => FMProperty defaultValue: false',
 		'#isIntrinsic => FMProperty defaultValue: false'
 	],
 	#category : #'Famix-Fortran-Entities-Entities'
@@ -38,7 +39,23 @@ FamixFortranFunction >> initialize [
 
 	"Default value initialization"
 	isIntrinsic := false.
+	isEsope := false.
 
+]
+
+{ #category : #accessing }
+FamixFortranFunction >> isEsope [
+
+	<FMProperty: #isEsope type: #Boolean defaultValue: false>
+	<generated>
+	<FMComment: 'It is esope Function ?'>
+	^ isEsope
+]
+
+{ #category : #accessing }
+FamixFortranFunction >> isEsope: anObject [
+	<generated>
+	isEsope := anObject
 ]
 
 { #category : #testing }

@@ -7,8 +7,8 @@ Trait {
 	#instVars : [
 		'#container => FMOne type: #FamixFortranTWithProgramUnits opposite: #programUnits'
 	],
-	#traits : 'FamixFortranTWithProgramUnits + FamixTNamedEntity + FamixTWithComments + FamixTWithStatements',
-	#classTraits : 'FamixFortranTWithProgramUnits classTrait + FamixTNamedEntity classTrait + FamixTWithComments classTrait + FamixTWithStatements classTrait',
+	#traits : 'FamixFortranTWithProgramUnits + FamixTNamedEntity + FamixTSourceEntity + FamixTWithComments + FamixTWithStatements + TEntityMetaLevelDependency',
+	#classTraits : 'FamixFortranTWithProgramUnits classTrait + FamixTNamedEntity classTrait + FamixTSourceEntity classTrait + FamixTWithComments classTrait + FamixTWithStatements classTrait + TEntityMetaLevelDependency classTrait',
 	#category : #'Famix-Fortran-Entities-Traits'
 }
 
