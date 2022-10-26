@@ -216,7 +216,7 @@ FamixFortranGenerator >> defineHierarchy [
 
 	program --|> tProgramUnit.
 
-	"programFile --|> #TNamedEntity."
+	programFile --|> #TNamedEntity.
 	programFile --|> #TSourceEntity.
 	programFile --|> #TEntityMetaLevelDependency.
 	programFile --|> tWithProgramUnits.
