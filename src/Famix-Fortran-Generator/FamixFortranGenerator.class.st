@@ -189,12 +189,10 @@ FamixFortranGenerator >> defineHierarchy [
 
 	super defineHierarchy.
 
-	tProgramUnit --|> #TWithStatements.
-	tProgramUnit --|> #TWithComments.
-	tProgramUnit --|> #TNamedEntity.
-	tProgramUnit --|> tWithProgramUnits.
+	"access --|> #TAssociation.
+	access --|> #TAccess"
 
-	programFile --|> tWithProgramUnits.
+	blockData --|> tProgramUnit.
 
 	externalProcedure --|> tProgramUnit.
 	externalProcedure --|> #TInvocable.
@@ -202,31 +200,40 @@ FamixFortranGenerator >> defineHierarchy [
 	externalProcedure --|> #TWithParameters.
 	externalProcedure --|> #TWithLocalVariables.
 
-	unresolvedBehavioral --|> externalProcedure.
-
-	subroutine --|> externalProcedure.
-
 	function --|> externalProcedure.
 	function --|> #TTypedEntity.
 	"function --|> #TFunction."
 
-	blockData --|> tProgramUnit.
-	program --|> tProgramUnit.
-	module --|> tProgramUnit.
-
-	parameter --|> #TParameter.
-
-	variable --|> #TLocalVariable.
+	indexedFileAnchor --|> sourceAnchor.
+	indexedFileAnchor --|> #TFileNavigation.
 
 	invocation --|> #TInvocation.
 	invocation --|> #THasSignature.
 
-	indexedFileAnchor --|> sourceAnchor.
-	indexedFileAnchor --|> #TFileNavigation
+	module --|> tProgramUnit.
 
+	parameter --|> #TParameter.
 
-	"access --|> #TAssociation.
-	access --|> #TAccess"
+	program --|> tProgramUnit.
+
+	"programFile --|> #TNamedEntity."
+	programFile --|> #TSourceEntity.
+	programFile --|> #TEntityMetaLevelDependency.
+	programFile --|> tWithProgramUnits.
+
+	subroutine --|> externalProcedure.
+
+	tProgramUnit --|> #TWithStatements.
+	tProgramUnit --|> #TSourceEntity.
+	tProgramUnit --|> #TWithComments.
+	tProgramUnit --|> #TEntityMetaLevelDependency.
+	tProgramUnit --|> #TNamedEntity.
+	tProgramUnit --|> tWithProgramUnits.
+
+	unresolvedBehavioral --|> externalProcedure.
+	
+	variable --|> #TLocalVariable.
+
 ]
 
 { #category : #definition }
@@ -247,8 +254,17 @@ FamixFortranGenerator >> defineProperties [
 
 	(function property: #isIntrinsic type: #Boolean defaultValue: false) 
 		comment: 'Function is intrinsic ?'.
-	(comment property: #isEsope type: #Boolean defaultValue: false) 
-		comment: 'It is esope comment ?'
+
+	(function property: #isEsope type: #Boolean defaultValue: false) 
+		comment: 'It is esope Function ?'.
+
+	"(comment property: #isEsope type: #Boolean defaultValue: false) 
+		comment: 'It is esope comment ?'."
+		
+	(variable property: #isEsope type: #Boolean defaultValue: false) 
+		comment: 'It is esope variable ?'.
+		
+
 ]
 
 { #category : #definition }
