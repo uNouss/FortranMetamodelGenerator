@@ -124,27 +124,8 @@ FamixFortranGenerator >> commentVariable [
 FamixFortranGenerator >> defineClasses [
 
 	super defineClasses.
-	programFile := builder
-		               newClassNamed: #ProgramFile
-		               comment: self commentProgramFile.
 
-	subroutine := builder
-		              newClassNamed: #Subroutine
-		              comment: self commentSubroutine.
-	subroutine withTesting.
-
-	program := builder
-		           newClassNamed: #Program
-		           comment: self commentProgram.
-	program withTesting.
-
-	module := builder newClassNamed: #Module comment: self commentModule.
-	module withTesting.
-
-	function := builder
-		            newClassNamed: #Function
-		            comment: self commentFunction.
-	function withTesting.
+	"access := builder newClassNamed: #Access comment: self accessComment."	
 
 	blockData := builder
 		             newClassNamed: #BlockData
@@ -157,6 +138,36 @@ FamixFortranGenerator >> defineClasses [
 		                     newClassNamed: #ExternalProcedure
 		                     comment: self commentExternalProcedure.
 	externalProcedure withTesting.
+
+	function := builder
+		            newClassNamed: #Function
+		            comment: self commentFunction.
+	function withTesting.
+
+	invocation := builder
+		              newClassNamed: #Invocation
+		              comment: self invocationComment.
+
+	indexedFileAnchor := builder
+		                     newClassNamed: #IndexedFileAnchor
+		                     comment: self indexedFileAnchorComment.
+
+	module := builder newClassNamed: #Module comment: self commentModule.
+	module withTesting.
+
+	program := builder
+		           newClassNamed: #Program
+		           comment: self commentProgram.
+	program withTesting.
+
+	programFile := builder
+		               newClassNamed: #ProgramFile
+		               comment: self commentProgramFile.
+
+	subroutine := builder
+		              newClassNamed: #Subroutine
+		              comment: self commentSubroutine.
+	subroutine withTesting.
 
 	unresolvedBehavioral := builder
 		                        newClassNamed: #UnresolvedBehavioral
@@ -173,15 +184,6 @@ FamixFortranGenerator >> defineClasses [
 		             comment: self commentParameter.
 	parameter withTesting.
 
-	invocation := builder
-		              newClassNamed: #Invocation
-		              comment: self invocationComment.
-
-	indexedFileAnchor := builder
-		                     newClassNamed: #IndexedFileAnchor
-		                     comment: self indexedFileAnchorComment
-
-	"access := builder newClassNamed: #Access comment: self accessComment"
 ]
 
 { #category : #definition }
