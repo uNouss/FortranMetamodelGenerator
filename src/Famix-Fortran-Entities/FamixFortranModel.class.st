@@ -16,3 +16,9 @@ FamixFortranModel class >> annotation [
 	<package: #'Famix-Fortran-Entities'>
 	<generated>
 ]
+
+{ #category : #actions }
+FamixFortranModel >> install [ 
+
+	^ self installWithCache: false
+]

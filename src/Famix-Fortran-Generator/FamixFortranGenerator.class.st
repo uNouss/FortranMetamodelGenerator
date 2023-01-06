@@ -6,7 +6,6 @@ Class {
 		'programFile',
 		'variable',
 		'parameter',
-		'externalProcedure',
 		'tProgramUnit',
 		'tWithProgramUnits',
 		'blockData',
@@ -16,7 +15,8 @@ Class {
 		'invocation',
 		'srcSpan',
 		'indexedFileAnchor',
-		'unresolvedBehavioral'
+		'unresolvedBehavioral',
+		'subProgram'
 	],
 	#category : #'Famix-Fortran-Generator'
 }
@@ -45,7 +45,7 @@ FamixFortranGenerator class >> submetamodels [
 ]
 
 { #category : #comments }
-FamixFortranGenerator >> accessComment [
+FamixFortranGenerator >> commentAccess [
 
 	self flag: #TODO. "complete comment"
 	^ 'Access'
@@ -59,8 +59,35 @@ FamixFortranGenerator >> commentBlockData [
 
 { #category : #comments }
 FamixFortranGenerator >> commentComment [
-	self flag: #TODO. "complete comment"
-	^ 'Comment'
+
+	^ 'A line with a `c`, `C`, `*`, `d`, `D`, or `!` in column one is a comment line, except that if the `-xld` option is set, then the lines starting with `D` or `d` are compiled as debug lines.
+The `d`, `D`, and `!` are nonstandard.
+
+If you put an exclamation mark (`!`) in any column of the statement field, except within character literals, then everything after the `!` on that line is a comment.
+
+A totally blank line is a comment line.
+
+Example: `c`, `C`, `d`, `D`, `*`, `!`, and blank comments:
+```fortran77
+c        1         2         3         4         5         6         7
+c23456789012345678901234567890123456789012345678901234567890123456789012
+c      Start expression analyzer 
+       CHARACTER S, STACK*80 
+       COMMON /PRMS/ N, S, STACK 
+       ... 
+*      Crack the expression:
+       IF ( S .GE. ''0'' .AND. S .LE. ''9'' ) THEN ! EoL comment 
+              CALL PUSH        ! Save on stack. EoL comment 
+d             PRINT *, S       ! Debug comment & EoL comment 
+       ELSE 
+              CALL TOLOWER ! To lowercase EoL comment 
+       END IF 
+D      PRINT *, N!       Debug comment & EoL comment 
+       ... 
+C      Finished 
+!       expression analyzer
+```
+'
 ]
 
 { #category : #comments }
@@ -74,13 +101,13 @@ FamixFortranGenerator >> commentFunction [
 
 	^ 'The **FUNCTION** identifies a program unit as a function subprogram.
 
-`[type] FUNCTION funName ([ar[, ar]])`
+`[type] FUNCTION fname ([ar[, ar]])`
 
- The data type of the function type designates the data type of the value returned by the external function. If it is omitted, then the data type returned is determined by the first letter of the symbolic name fname. If the external function returns a `CHARACTER` value, then the length must be specified or given as `CHARACTER*(*)`. In this second case, the length will be as specified in the invoking program unit.
+ The data type of the function type designates the data type of the value returned by the external function. If it is omitted, then the data type returned is determined by the first letter of the symbolic name `fname`. If the external function returns a `CHARACTER` value, then the length must be specified or given as `CHARACTER*(*)`. In this second case, the length will be as specified in the invoking program unit.
 
-The name *fname* may be used within the external function as a variable but it must be assigned a value before the end of the program unit. The last value assigned to the name fname is the value returned to the invoking program unit.
+The name `fname` may be used within the external function as a variable but it must be assigned a value before the end of the program unit. The last value assigned to the name `fname` is the value returned to the invoking program unit.
 
-A function is invoked by using its name fname followed by parentheses and an optional list of arguments called actual arguments which correspond to the dummy arguments in the FUNCTION statement. There may be zero or more dummy arguments of any data type which are declared (if necessary) in the body of the external function. However, the parentheses must be present even if there are no arguments. 
+A function is invoked by using its name `fname` followed by parentheses and an optional list of arguments called actual arguments which correspond to the dummy arguments in the FUNCTION statement. There may be zero or more dummy arguments of any data type which are declared (if necessary) in the body of the external function. However, the parentheses must be present even if there are no arguments. 
 '
 ]
 
@@ -132,12 +159,13 @@ FamixFortranGenerator >> defineClasses [
 		             comment: self commentBlockData.
 	blockData withTesting.
 
+	comment comment: self commentComment.
 	comment withTesting.
 
-	externalProcedure := builder
+	subProgram := builder
 		                     newClassNamed: #ExternalProcedure
 		                     comment: self commentExternalProcedure.
-	externalProcedure withTesting.
+	subProgram withTesting.
 
 	function := builder
 		            newClassNamed: #Function
@@ -196,13 +224,13 @@ FamixFortranGenerator >> defineHierarchy [
 
 	blockData --|> tProgramUnit.
 
-	externalProcedure --|> tProgramUnit.
-	externalProcedure --|> #TInvocable.
-	externalProcedure --|> #THasSignature.
-	externalProcedure --|> #TWithParameters.
-	externalProcedure --|> #TWithLocalVariables.
+	subProgram --|> tProgramUnit.
+	subProgram --|> #TInvocable.
+	subProgram --|> #THasSignature.
+	subProgram --|> #TWithParameters.
+	subProgram --|> #TWithLocalVariables.
 
-	function --|> externalProcedure.
+	function --|> subProgram.
 	function --|> #TTypedEntity.
 	"function --|> #TFunction."
 
@@ -223,7 +251,7 @@ FamixFortranGenerator >> defineHierarchy [
 	programFile --|> #TEntityMetaLevelDependency.
 	programFile --|> tWithProgramUnits.
 
-	subroutine --|> externalProcedure.
+	subroutine --|> subProgram.
 
 	tProgramUnit --|> #TWithStatements.
 	tProgramUnit --|> #TSourceEntity.
@@ -232,7 +260,7 @@ FamixFortranGenerator >> defineHierarchy [
 	tProgramUnit --|> #TNamedEntity.
 	tProgramUnit --|> tWithProgramUnits.
 
-	unresolvedBehavioral --|> externalProcedure.
+	unresolvedBehavioral --|> subProgram.
 	
 	variable --|> #TLocalVariable.
 

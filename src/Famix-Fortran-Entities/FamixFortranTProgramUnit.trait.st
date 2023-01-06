@@ -22,6 +22,11 @@ FamixFortranTProgramUnit classSide >> annotation [
 ]
 
 { #category : #accessing }
+FamixFortranTProgramUnit >> childrenSelectors [
+	^#( programUnits esopeChildren )
+]
+
+{ #category : #accessing }
 FamixFortranTProgramUnit >> container [
 	"Relation named: #container type: #FamixFortranTWithProgramUnits opposite: #programUnits"
 
@@ -43,4 +48,9 @@ FamixFortranTProgramUnit >> containerGroup [
 	<generated>
 	<navigation: 'Container'>
 	^ MooseSpecializedGroup with: self container
+]
+
+{ #category : #accessing }
+FamixFortranTProgramUnit >> esopeChildren [
+	^comments 
 ]
