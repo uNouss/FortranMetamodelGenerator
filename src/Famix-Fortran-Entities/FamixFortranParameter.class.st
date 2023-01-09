@@ -24,3 +24,9 @@ FamixFortranParameter >> isParameter [
 	<generated>
 	^ true
 ]
+
+{ #category : #testing }
+FamixFortranParameter >> setOwner: anEntity [
+
+	anEntity addParameter: self
+]
