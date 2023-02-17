@@ -18,6 +18,13 @@ FamixFortranParameter class >> annotation [
 	^self
 ]
 
+{ #category : #accessing }
+FamixFortranParameter class >> newEntity: anEntity [
+1halt.
+	^ self new
+		  mooseModel: anEntity mooseModel
+]
+
 { #category : #testing }
 FamixFortranParameter >> isParameter [
 

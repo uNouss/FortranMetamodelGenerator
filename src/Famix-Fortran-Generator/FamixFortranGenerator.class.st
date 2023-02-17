@@ -263,6 +263,10 @@ FamixFortranGenerator >> defineHierarchy [
 	unresolvedBehavioral --|> subProgram.
 	
 	variable --|> #TLocalVariable.
+	
+	invocation --|> #TInvocation.
+	
+	
 
 ]
 
