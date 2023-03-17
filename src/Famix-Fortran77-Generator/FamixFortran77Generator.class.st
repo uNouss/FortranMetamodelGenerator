@@ -1,3 +1,36 @@
+"
+# F77 Metamodel generator
+
+```txt
+    Instance Variables
+	access:		<Object>
+	argument:		<Object>
+	body:		<Object>
+	fType:		<Object>
+	include:		<Object>
+	indexedFileAnchor:		<Object>
+	invocation:		<Object>
+	parameter:		<Object>
+	programFile:		<Object>
+	programUnit:		<Object>
+	puBlockdata:		<Object>
+	puComment:		<Object>
+	puFunction:		<Object>
+	puMain:		<Object>
+	puProcedure:		<Object>
+	puSubroutine:		<Object>
+	tStaticInvocable:		<Object>
+	tStaticInvocation:		<Object>
+	tWithBody:		<Object>
+	tWithStaticInvocations:		<Object>
+	variable:		<Object>
+```
+
+### NEED TO BE FIXED
+
+will move the `namedEntity` from `programUnit` to its children which are `namedEntity` (this is not the case for `puComment`). However, this does not add the `FamixTNamedEntity` trait to the children.
+
+"
 Class {
 	#name : #FamixFortran77Generator,
 	#superclass : #FamixBasicInfrastructureGenerator,
