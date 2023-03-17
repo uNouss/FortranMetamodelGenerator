@@ -4,6 +4,8 @@ a comment belongs to fortran file
 Class {
 	#name : #FamixFortran77PUComment,
 	#superclass : #FamixFortran77ProgramUnit,
+	#traits : 'FamixTComment',
+	#classTraits : 'FamixTComment classTrait',
 	#category : #'Famix-Fortran77-Entities-Entities'
 }
 

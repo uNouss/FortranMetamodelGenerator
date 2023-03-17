@@ -7,8 +7,7 @@ Class {
 	#traits : 'FamixTWithAccesses + FamixTWithLocalVariables',
 	#classTraits : 'FamixTWithAccesses classTrait + FamixTWithLocalVariables classTrait',
 	#instVars : [
-		'#variables => FMMany type: #FamixFortran77Variable opposite: #pUBlockdata',
-		'#body => FMOne type: #FamixFortran77Body opposite: #pUBlockdata'
+		'#symbolTable => FMProperty defaultValue: ((Dictionary new))'
 	],
 	#category : #'Famix-Fortran77-Entities-Entities'
 }
@@ -22,53 +21,25 @@ FamixFortran77PUBlockdata class >> annotation [
 	^self
 ]
 
-{ #category : #adding }
-FamixFortran77PUBlockdata >> addVariable: anObject [
+{ #category : #initialization }
+FamixFortran77PUBlockdata >> initialize [
+
 	<generated>
-	^ self variables add: anObject
+	super initialize.
+
+	"Default value initialization"
+	symbolTable := Dictionary new.
+
 ]
 
 { #category : #accessing }
-FamixFortran77PUBlockdata >> body [
-	"Relation named: #body type: #FamixFortran77Body opposite: #pUBlockdata"
-
-	<generated>
-	^ body
+FamixFortran77PUBlockdata >> symbolTable [
+	
+	^ symbolTable
 ]
 
 { #category : #accessing }
-FamixFortran77PUBlockdata >> body: anObject [
-
+FamixFortran77PUBlockdata >> symbolTable: anObject [
 	<generated>
-	body := anObject
-]
-
-{ #category : #navigation }
-FamixFortran77PUBlockdata >> bodyGroup [
-	<generated>
-	<navigation: 'Body'>
-	^ MooseSpecializedGroup with: self body
-]
-
-{ #category : #accessing }
-FamixFortran77PUBlockdata >> variables [
-	"Relation named: #variables type: #FamixFortran77Variable opposite: #pUBlockdata"
-
-	<generated>
-	<derived>
-	^ variables
-]
-
-{ #category : #accessing }
-FamixFortran77PUBlockdata >> variables: anObject [
-
-	<generated>
-	variables value: anObject
-]
-
-{ #category : #navigation }
-FamixFortran77PUBlockdata >> variablesGroup [
-	<generated>
-	<navigation: 'Variables'>
-	^ MooseSpecializedGroup withAll: self variables asSet
+	symbolTable := anObject
 ]

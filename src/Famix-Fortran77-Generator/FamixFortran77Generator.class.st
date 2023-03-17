@@ -5,7 +5,6 @@ Class {
 		'access',
 		'argument',
 		'body',
-		'file',
 		'invocation',
 		'parameter',
 		'programUnit',
@@ -20,7 +19,10 @@ Class {
 		'tWithBody',
 		'tStaticInvocable',
 		'tStaticInvocation',
-		'tWithStaticInvocations'
+		'tWithStaticInvocations',
+		'indexedFileAnchor',
+		'fType',
+		'programFile'
 	],
 	#category : #'Famix-Fortran77-Generator'
 }
@@ -70,23 +72,22 @@ FamixFortran77Generator >> defineClasses [
 		          newClassNamed: #Access
 		          comment: self accessEntityComment.
 
-	"argument := builder
-		            newClassNamed: #Argument
-		            comment: self argumentEntityComment."
-
-	body := builder newClassNamed: #Body comment: self bodyEntityComment.
-	"fcomment := builder
-		            newClassNamed: #FComment
-		            comment: self body."
+	"body := builder newClassNamed: #Body comment: self bodyEntityComment."
 	comment comment: self fCommentEntityComment.
 
-	file := builder newClassNamed: #File comment: self fileEntityComment.
+	fType := builder newClassNamed: #FType comment: self fTypeComment.
+
+	programFile := builder newClassNamed: #ProgramFile comment: self fileEntityComment.
+
+	indexedFileAnchor := builder
+		                     newClassNamed: #IndexedFileAnchor
+		                     comment: self indexedFileAnchorComment.
 
 	invocation := builder
 		              newClassNamed: #Invocation
 		              comment: self invocationEntityComment.
 
-	include := builder newClassNamed: #Include comment: ''.
+	"include := builder newClassNamed: #Include comment: ''."
 
 	parameter := builder
 		             newClassNamed: #Parameter
@@ -122,11 +123,7 @@ FamixFortran77Generator >> defineClasses [
 
 	variable := builder
 		            newClassNamed: #Variable
-		            comment: self variableEntityComment.
-		
-	
-
-
+		            comment: self variableEntityComment
 ]
 
 { #category : #definition }
@@ -135,53 +132,53 @@ FamixFortran77Generator >> defineHierarchy [
 	super defineHierarchy.
 
 	access --|> #TAccess.
+	access --|> #TEntityMetaLevelDependency.
 
-	body --|> #TWithInvocations.
-	body --|> #TWithAccesses.
+	fType --|> #TType.
 
-	file --|> namedEntity.
-	file --|> #TCompilationUnit.
-	file --|> #TSourceEntity.
-	file --|> #TEntityMetaLevelDependency.
-	file --|> #TWithFileIncludes.
+	programFile --|> namedEntity.
+	programFile --|> #TCompilationUnit.
+	programFile --|> #TEntityMetaLevelDependency.
+	programFile --|> #TSourceEntity.
 
-	include --|> #TFileInclude.
+	indexedFileAnchor --|> sourceAnchor.
+	indexedFileAnchor --|> #TFileNavigation.
 
 	invocation --|> #TInvocation.
+	invocation --|> #TEntityMetaLevelDependency.
 
-	"parameter --|> namedEntity.
-	parameter --|> #TAccessible."
 	parameter --|> #TParameter.
 
-	programUnit --|> namedEntity.
 	programUnit --|> #TSourceEntity.
-	programUnit --|> #TWithLocalVariables.
 	programUnit --|> #TEntityMetaLevelDependency.
+	programUnit --|> #TWithComments.
 
+
+	programUnit --|> namedEntity.
 	puBlockdata --|> programUnit.
 	puBlockdata --|> #TWithAccesses.
 	puBlockdata --|> #TWithLocalVariables.
 	
 	puComment --|> programUnit.
+	puComment --|> #TComment.
 
 	puFunction --|> puProcedure.
 
 	puMain --|> programUnit.
-	puMain --|> tWithBody.
+	puMain --|> #TWithAccesses.
+	puMain --|> #TWithInvocations.
+	puMain --|> #TWithLocalVariables.
 
 	puProcedure --|> programUnit.
-	puProcedure --|> tWithBody.
-	"puProcedure --|> #TInvocable."
-	puProcedure  --|> tStaticInvocable.
 	puProcedure --|> #THasSignature.
-	puProcedure --|> #TWithParameters.
+	puProcedure --|> #TInvocable.
+	puProcedure --|> #TWithAccesses.
+	puProcedure --|> #TWithInvocations.
 	puProcedure --|> #TWithLocalVariables.
-	"puProcedure --|> #TWithGlobalVariables."
+	puProcedure --|> #TWithParameters.
 
 	puSubroutine --|> puProcedure.
 
-	variable --|> namedEntity.
-	variable --|> #TAccessible.
 	variable --|> #TLocalVariable.
 ]
 
@@ -192,22 +189,57 @@ FamixFortran77Generator >> defineProperties [
 
 	(comment property: #isEsope type: #Boolean defaultValue: false) 
 		comment: 'It is esope comment ?'.
-	
-	(file property: #version type: #String) comment:
+
+	(fType property: #length type: #Number) comment: 'length attribute'.
+	(fType property: #kind type: #Number) comment: 'kind attribute'.
+
+	"(parameter property: #variable type: #Object) comment:
+		'variable declaration related to this parameter'."
+
+	(programFile property: #version type: #String) comment:
 		'Fortran version of the file'.
 
-	(file property: #filename type: #String) comment:
+	(programFile property: #filename type: #String) comment:
 		'Fortran name of the file'.
+
+	(programFile
+		 property: #symbolTable
+		 type: #Object
+		 defaultValue: 'Dictionary new') comment:
+		'Table of symbols for programFile'.
+
+	(puBlockdata
+		 property: #symbolTable
+		 type: #Object
+		 defaultValue: 'Dictionary new') comment:
+		'Table of symbols for blockdata'.
 
 	(puFunction property: #isEsope type: #Boolean defaultValue: false) 
 		comment: 'It is kind of esope function ?'.
 
+	(puFunction
+		 property: #symbolTable
+		 type: #Object
+		 defaultValue: 'Dictionary new') comment:
+		'Table of symbols for function'.
+
+	(puMain
+		 property: #symbolTable
+		 type: #Object
+		 defaultValue: 'Dictionary new') comment:
+		'Table of symbols for program'.
+
+	(puSubroutine
+		 property: #symbolTable
+		 type: #Object
+		 defaultValue: 'Dictionary new') comment:
+		'Table of symbols for subroutine'.
+
 	(variable property: #isEsope type: #Boolean defaultValue: false) 
 		comment: 'It is esope attribute variable from segment definition ?'.
-	
-	(variable property: #segment type: #String)
-		comment: 'variable belong to this segment'.
 
+	(variable property: #segment type: #String) comment:
+		'variable belong to this segment'
 ]
 
 { #category : #definition }
@@ -215,35 +247,11 @@ FamixFortran77Generator >> defineRelations [
 
 	super defineRelations.
 
-	"body <>-* invocation.
-	body <>-* access."
+	programFile <>-* programUnit.
 
-	"(file property: #file) *- (file property: #includes)."
-	file <>-* programUnit.
+	(puFunction property: #returnType) - fType.
 
-	programUnit <>-* comment.
-
-	puBlockdata <>-* variable.
-	puBlockdata <>- body.
-
-	puMain <>- body.
-	puMain <>-* variable.
-
-	"puProcedure <>-* argument.
-	puProcedure <>-* parameter.
-	puProcedure <>-* variable."
-	puProcedure <>- body.
-
-	"Implements the fact that an entity with a body has a body."
-	"(tWithBody property: #body)
-		<>- (body property: #container)."
-
-	"Implements relations related to static invocation,"
-	"(tStaticInvocable property: #incomingStaticInvocations)
-		-* (tStaticInvocation property: #target).
-		
-	(tWithStaticInvocations property: #outgoingStaticInvocations)
-		-* (tStaticInvocation property: #caller)"
+	variable - fType
 ]
 
 { #category : #definition }
@@ -251,14 +259,14 @@ FamixFortran77Generator >> defineTraits [
 
 	super defineTraits.
 
-	tWithBody := builder newTraitNamed: #TWithBody.
+	"tWithBody := builder newTraitNamed: #TWithBody."
 
 	"By default, the basic infrastructure of Famix implements 'dynamic' invocation.
 	 Here, we implement 'static' invocation using so it can be extracted for re-use later."
-	tStaticInvocable := builder newTraitNamed: #TStaticInvocable.
+	"tStaticInvocable := builder newTraitNamed: #TStaticInvocable.
 	tStaticInvocation := builder newTraitNamed: #TStaticInvocation.
 	tWithStaticInvocations := builder newTraitNamed:
-		                          #TWithStaticInvocations
+		                          #TWithStaticInvocations"
 ]
 
 { #category : #'class comment' }
@@ -267,10 +275,23 @@ FamixFortran77Generator >> fCommentEntityComment [
 	^ 'a fortran comment'
 ]
 
+{ #category : #definition }
+FamixFortran77Generator >> fTypeComment [
+
+	^ 'Im a Fortran Type'
+]
+
 { #category : #'class comment' }
 FamixFortran77Generator >> fileEntityComment [
 
 	^ 'a fortran file'
+]
+
+{ #category : #definition }
+FamixFortran77Generator >> indexedFileAnchorComment [
+
+	self flag: #TODO. "complete comment"
+	^ 'Its the sourceAnchor (position of the token) in the source file (startLine@startColumn)-(endLine@endColumn).'
 ]
 
 { #category : #'class comment' }

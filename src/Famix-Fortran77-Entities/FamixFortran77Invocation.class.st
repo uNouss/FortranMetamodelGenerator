@@ -4,8 +4,8 @@ an invocation of procedure inside a procedure or main program
 Class {
 	#name : #FamixFortran77Invocation,
 	#superclass : #FamixFortran77Entity,
-	#traits : 'FamixTInvocation',
-	#classTraits : 'FamixTInvocation classTrait',
+	#traits : 'FamixTInvocation + TEntityMetaLevelDependency',
+	#classTraits : 'FamixTInvocation classTrait + TEntityMetaLevelDependency classTrait',
 	#category : #'Famix-Fortran77-Entities-Entities'
 }
 

@@ -3,14 +3,13 @@ a local variable of a program unit
 "
 Class {
 	#name : #FamixFortran77Variable,
-	#superclass : #FamixFortran77NamedEntity,
-	#traits : 'FamixTAccessible + FamixTLocalVariable',
-	#classTraits : 'FamixTAccessible classTrait + FamixTLocalVariable classTrait',
+	#superclass : #FamixFortran77Entity,
+	#traits : 'FamixTLocalVariable',
+	#classTraits : 'FamixTLocalVariable classTrait',
 	#instVars : [
+		'#fType => FMOne type: #FamixFortran77FType opposite: #variable',
 		'#isEsope => FMProperty defaultValue: false',
-		'#segment => FMProperty',
-		'#pUBlockdata => FMOne type: #FamixFortran77PUBlockdata opposite: #variables',
-		'#pUMain => FMOne type: #FamixFortran77PUMain opposite: #variables'
+		'#segment => FMProperty'
 	],
 	#category : #'Famix-Fortran77-Entities-Entities'
 }
@@ -18,10 +17,25 @@ Class {
 { #category : #meta }
 FamixFortran77Variable class >> annotation [
 
-	<FMClass: #Variable super: #FamixFortran77NamedEntity>
+	<FMClass: #Variable super: #FamixFortran77Entity>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
 	^self
+]
+
+{ #category : #accessing }
+FamixFortran77Variable >> fType [
+	"Relation named: #fType type: #FamixFortran77FType opposite: #variable"
+
+	<generated>
+	^ fType
+]
+
+{ #category : #accessing }
+FamixFortran77Variable >> fType: anObject [
+
+	<generated>
+	fType := anObject
 ]
 
 { #category : #initialization }
@@ -48,52 +62,6 @@ FamixFortran77Variable >> isEsope [
 FamixFortran77Variable >> isEsope: anObject [
 	<generated>
 	isEsope := anObject
-]
-
-{ #category : #accessing }
-FamixFortran77Variable >> pUBlockdata [
-	"Relation named: #pUBlockdata type: #FamixFortran77PUBlockdata opposite: #variables"
-
-	<generated>
-	<container>
-	^ pUBlockdata
-]
-
-{ #category : #accessing }
-FamixFortran77Variable >> pUBlockdata: anObject [
-
-	<generated>
-	pUBlockdata := anObject
-]
-
-{ #category : #navigation }
-FamixFortran77Variable >> pUBlockdataGroup [
-	<generated>
-	<navigation: 'PUBlockdata'>
-	^ MooseSpecializedGroup with: self pUBlockdata
-]
-
-{ #category : #accessing }
-FamixFortran77Variable >> pUMain [
-	"Relation named: #pUMain type: #FamixFortran77PUMain opposite: #variables"
-
-	<generated>
-	<container>
-	^ pUMain
-]
-
-{ #category : #accessing }
-FamixFortran77Variable >> pUMain: anObject [
-
-	<generated>
-	pUMain := anObject
-]
-
-{ #category : #navigation }
-FamixFortran77Variable >> pUMainGroup [
-	<generated>
-	<navigation: 'PUMain'>
-	^ MooseSpecializedGroup with: self pUMain
 ]
 
 { #category : #accessing }

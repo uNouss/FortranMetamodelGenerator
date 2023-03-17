@@ -4,11 +4,10 @@ a program unit
 Class {
 	#name : #FamixFortran77ProgramUnit,
 	#superclass : #FamixFortran77NamedEntity,
-	#traits : 'FamixTSourceEntity + FamixTWithLocalVariables + TEntityMetaLevelDependency',
-	#classTraits : 'FamixTSourceEntity classTrait + FamixTWithLocalVariables classTrait + TEntityMetaLevelDependency classTrait',
+	#traits : 'FamixTSourceEntity + FamixTWithComments + TEntityMetaLevelDependency',
+	#classTraits : 'FamixTSourceEntity classTrait + FamixTWithComments classTrait + TEntityMetaLevelDependency classTrait',
 	#instVars : [
-		'#file => FMOne type: #FamixFortran77File opposite: #programUnits',
-		'#comments => FMMany type: #FamixFortran77Comment opposite: #programUnit'
+		'#programFile => FMOne type: #FamixFortran77ProgramFile opposite: #programUnits'
 	],
 	#category : #'Famix-Fortran77-Entities-Entities'
 }
@@ -22,54 +21,25 @@ FamixFortran77ProgramUnit class >> annotation [
 	^self
 ]
 
-{ #category : #adding }
-FamixFortran77ProgramUnit >> addComment: anObject [
-	<generated>
-	^ self comments add: anObject
-]
-
 { #category : #accessing }
-FamixFortran77ProgramUnit >> comments [
-	"Relation named: #comments type: #FamixFortran77Comment opposite: #programUnit"
-
-	<generated>
-	<derived>
-	^ comments
-]
-
-{ #category : #accessing }
-FamixFortran77ProgramUnit >> comments: anObject [
-
-	<generated>
-	comments value: anObject
-]
-
-{ #category : #navigation }
-FamixFortran77ProgramUnit >> commentsGroup [
-	<generated>
-	<navigation: 'Comments'>
-	^ MooseSpecializedGroup withAll: self comments asSet
-]
-
-{ #category : #accessing }
-FamixFortran77ProgramUnit >> file [
-	"Relation named: #file type: #FamixFortran77File opposite: #programUnits"
+FamixFortran77ProgramUnit >> programFile [
+	"Relation named: #programFile type: #FamixFortran77ProgramFile opposite: #programUnits"
 
 	<generated>
 	<container>
-	^ file
+	^ programFile
 ]
 
 { #category : #accessing }
-FamixFortran77ProgramUnit >> file: anObject [
+FamixFortran77ProgramUnit >> programFile: anObject [
 
 	<generated>
-	file := anObject
+	programFile := anObject
 ]
 
 { #category : #navigation }
-FamixFortran77ProgramUnit >> fileGroup [
+FamixFortran77ProgramUnit >> programFileGroup [
 	<generated>
-	<navigation: 'File'>
-	^ MooseSpecializedGroup with: self file
+	<navigation: 'ProgramFile'>
+	^ MooseSpecializedGroup with: self programFile
 ]

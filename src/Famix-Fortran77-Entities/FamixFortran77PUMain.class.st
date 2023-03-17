@@ -4,11 +4,10 @@ a main program
 Class {
 	#name : #FamixFortran77PUMain,
 	#superclass : #FamixFortran77ProgramUnit,
-	#traits : 'FamixFortran77TWithBody',
-	#classTraits : 'FamixFortran77TWithBody classTrait',
+	#traits : 'FamixTWithAccesses + FamixTWithInvocations + FamixTWithLocalVariables',
+	#classTraits : 'FamixTWithAccesses classTrait + FamixTWithInvocations classTrait + FamixTWithLocalVariables classTrait',
 	#instVars : [
-		'#body => FMOne type: #FamixFortran77Body opposite: #pUMain',
-		'#variables => FMMany type: #FamixFortran77Variable opposite: #pUMain'
+		'#symbolTable => FMProperty defaultValue: ((Dictionary new))'
 	],
 	#category : #'Famix-Fortran77-Entities-Entities'
 }
@@ -22,53 +21,25 @@ FamixFortran77PUMain class >> annotation [
 	^self
 ]
 
-{ #category : #adding }
-FamixFortran77PUMain >> addVariable: anObject [
+{ #category : #initialization }
+FamixFortran77PUMain >> initialize [
+
 	<generated>
-	^ self variables add: anObject
+	super initialize.
+
+	"Default value initialization"
+	symbolTable := Dictionary new.
+
 ]
 
 { #category : #accessing }
-FamixFortran77PUMain >> body [
-	"Relation named: #body type: #FamixFortran77Body opposite: #pUMain"
-
-	<generated>
-	^ body
+FamixFortran77PUMain >> symbolTable [
+	
+	^ symbolTable
 ]
 
 { #category : #accessing }
-FamixFortran77PUMain >> body: anObject [
-
+FamixFortran77PUMain >> symbolTable: anObject [
 	<generated>
-	body := anObject
-]
-
-{ #category : #navigation }
-FamixFortran77PUMain >> bodyGroup [
-	<generated>
-	<navigation: 'Body'>
-	^ MooseSpecializedGroup with: self body
-]
-
-{ #category : #accessing }
-FamixFortran77PUMain >> variables [
-	"Relation named: #variables type: #FamixFortran77Variable opposite: #pUMain"
-
-	<generated>
-	<derived>
-	^ variables
-]
-
-{ #category : #accessing }
-FamixFortran77PUMain >> variables: anObject [
-
-	<generated>
-	variables value: anObject
-]
-
-{ #category : #navigation }
-FamixFortran77PUMain >> variablesGroup [
-	<generated>
-	<navigation: 'Variables'>
-	^ MooseSpecializedGroup withAll: self variables asSet
+	symbolTable := anObject
 ]

@@ -5,7 +5,9 @@ Class {
 	#name : #FamixFortran77PUFunction,
 	#superclass : #FamixFortran77PUProcedure,
 	#instVars : [
-		'#isEsope => FMProperty defaultValue: false'
+		'#isEsope => FMProperty defaultValue: false',
+		'#returnType => FMOne type: #FamixFortran77FType opposite: #pUFunction',
+		'#symbolTable => FMProperty defaultValue: ((Dictionary new))'
 	],
 	#category : #'Famix-Fortran77-Entities-Entities'
 }
@@ -27,6 +29,7 @@ FamixFortran77PUFunction >> initialize [
 
 	"Default value initialization"
 	isEsope := false.
+	symbolTable := Dictionary new.
 
 ]
 
@@ -43,4 +46,31 @@ FamixFortran77PUFunction >> isEsope [
 FamixFortran77PUFunction >> isEsope: anObject [
 	<generated>
 	isEsope := anObject
+]
+
+{ #category : #accessing }
+FamixFortran77PUFunction >> returnType [
+	"Relation named: #returnType type: #FamixFortran77FType opposite: #pUFunction"
+
+	<generated>
+	^ returnType
+]
+
+{ #category : #accessing }
+FamixFortran77PUFunction >> returnType: anObject [
+
+	<generated>
+	returnType := anObject
+]
+
+{ #category : #accessing }
+FamixFortran77PUFunction >> symbolTable [
+	
+	^ symbolTable
+]
+
+{ #category : #accessing }
+FamixFortran77PUFunction >> symbolTable: anObject [
+	<generated>
+	symbolTable := anObject
 ]

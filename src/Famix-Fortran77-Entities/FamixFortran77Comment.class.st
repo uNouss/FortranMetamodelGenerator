@@ -7,8 +7,7 @@ Class {
 	#traits : 'FamixTComment',
 	#classTraits : 'FamixTComment classTrait',
 	#instVars : [
-		'#isEsope => FMProperty defaultValue: false',
-		'#programUnit => FMOne type: #FamixFortran77ProgramUnit opposite: #comments'
+		'#isEsope => FMProperty defaultValue: false'
 	],
 	#category : #'Famix-Fortran77-Entities-Entities'
 }
@@ -46,27 +45,4 @@ FamixFortran77Comment >> isEsope [
 FamixFortran77Comment >> isEsope: anObject [
 	<generated>
 	isEsope := anObject
-]
-
-{ #category : #accessing }
-FamixFortran77Comment >> programUnit [
-	"Relation named: #programUnit type: #FamixFortran77ProgramUnit opposite: #comments"
-
-	<generated>
-	<container>
-	^ programUnit
-]
-
-{ #category : #accessing }
-FamixFortran77Comment >> programUnit: anObject [
-
-	<generated>
-	programUnit := anObject
-]
-
-{ #category : #navigation }
-FamixFortran77Comment >> programUnitGroup [
-	<generated>
-	<navigation: 'ProgramUnit'>
-	^ MooseSpecializedGroup with: self programUnit
 ]

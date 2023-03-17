@@ -11,12 +11,6 @@ FamixFortran77ImportingContext >> importAccess [
 ]
 
 { #category : #testing }
-FamixFortran77ImportingContext >> importBody [
-	<generated>
-	^ self import: FamixFortran77Body
-]
-
-{ #category : #testing }
 FamixFortran77ImportingContext >> importComment [
 	<generated>
 	^ self import: FamixFortran77Comment
@@ -29,15 +23,15 @@ FamixFortran77ImportingContext >> importEntity [
 ]
 
 { #category : #testing }
-FamixFortran77ImportingContext >> importFile [
+FamixFortran77ImportingContext >> importFType [
 	<generated>
-	^ self import: FamixFortran77File
+	^ self import: FamixFortran77FType
 ]
 
 { #category : #testing }
-FamixFortran77ImportingContext >> importInclude [
+FamixFortran77ImportingContext >> importIndexedFileAnchor [
 	<generated>
-	^ self import: FamixFortran77Include
+	^ self import: FamixFortran77IndexedFileAnchor
 ]
 
 { #category : #testing }
@@ -95,6 +89,12 @@ FamixFortran77ImportingContext >> importParameter [
 ]
 
 { #category : #testing }
+FamixFortran77ImportingContext >> importProgramFile [
+	<generated>
+	^ self import: FamixFortran77ProgramFile
+]
+
+{ #category : #testing }
 FamixFortran77ImportingContext >> importProgramUnit [
 	<generated>
 	^ self import: FamixFortran77ProgramUnit
@@ -143,12 +143,6 @@ FamixFortran77ImportingContext >> shouldImportAccess [
 ]
 
 { #category : #testing }
-FamixFortran77ImportingContext >> shouldImportBody [
-	<generated>
-	^ self shouldImport: FamixFortran77Body
-]
-
-{ #category : #testing }
 FamixFortran77ImportingContext >> shouldImportComment [
 	<generated>
 	^ self shouldImport: FamixFortran77Comment
@@ -161,15 +155,15 @@ FamixFortran77ImportingContext >> shouldImportEntity [
 ]
 
 { #category : #testing }
-FamixFortran77ImportingContext >> shouldImportFile [
+FamixFortran77ImportingContext >> shouldImportFType [
 	<generated>
-	^ self shouldImport: FamixFortran77File
+	^ self shouldImport: FamixFortran77FType
 ]
 
 { #category : #testing }
-FamixFortran77ImportingContext >> shouldImportInclude [
+FamixFortran77ImportingContext >> shouldImportIndexedFileAnchor [
 	<generated>
-	^ self shouldImport: FamixFortran77Include
+	^ self shouldImport: FamixFortran77IndexedFileAnchor
 ]
 
 { #category : #testing }
@@ -224,6 +218,12 @@ FamixFortran77ImportingContext >> shouldImportPUSubroutine [
 FamixFortran77ImportingContext >> shouldImportParameter [
 	<generated>
 	^ self shouldImport: FamixFortran77Parameter
+]
+
+{ #category : #testing }
+FamixFortran77ImportingContext >> shouldImportProgramFile [
+	<generated>
+	^ self shouldImport: FamixFortran77ProgramFile
 ]
 
 { #category : #testing }

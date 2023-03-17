@@ -47,3 +47,10 @@ FamixFortran77Entity >> isStructuralEntity [
 	<generated>
 	^ false
 ]
+
+{ #category : #testing }
+FamixFortran77Entity >> isType [
+
+	<generated>
+	^ false
+]
