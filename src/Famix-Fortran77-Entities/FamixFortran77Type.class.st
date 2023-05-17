@@ -2,30 +2,30 @@
 Im a Fortran Type
 "
 Class {
-	#name : #FamixFortran77FType,
+	#name : #FamixFortran77Type,
 	#superclass : #FamixFortran77Entity,
 	#traits : 'FamixTType',
 	#classTraits : 'FamixTType classTrait',
 	#instVars : [
-		'#kind => FMProperty',
 		'#length => FMProperty',
+		'#kind => FMProperty',
 		'#pUFunction => FMOne type: #FamixFortran77PUFunction opposite: #returnType',
-		'#variable => FMOne type: #FamixFortran77Variable opposite: #fType'
+		'#variable => FMOne type: #FamixFortran77Variable opposite: #type'
 	],
 	#category : #'Famix-Fortran77-Entities-Entities'
 }
 
 { #category : #meta }
-FamixFortran77FType class >> annotation [
+FamixFortran77Type class >> annotation [
 
-	<FMClass: #FType super: #FamixFortran77Entity>
+	<FMClass: #Type super: #FamixFortran77Entity>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #accessing }
-FamixFortran77FType >> kind [
+FamixFortran77Type >> kind [
 
 	<FMProperty: #kind type: #Number>
 	<generated>
@@ -34,13 +34,13 @@ FamixFortran77FType >> kind [
 ]
 
 { #category : #accessing }
-FamixFortran77FType >> kind: anObject [
+FamixFortran77Type >> kind: anObject [
 	<generated>
 	kind := anObject
 ]
 
 { #category : #accessing }
-FamixFortran77FType >> length [
+FamixFortran77Type >> length [
 
 	<FMProperty: #length type: #Number>
 	<generated>
@@ -49,13 +49,13 @@ FamixFortran77FType >> length [
 ]
 
 { #category : #accessing }
-FamixFortran77FType >> length: anObject [
+FamixFortran77Type >> length: anObject [
 	<generated>
 	length := anObject
 ]
 
 { #category : #accessing }
-FamixFortran77FType >> pUFunction [
+FamixFortran77Type >> pUFunction [
 	"Relation named: #pUFunction type: #FamixFortran77PUFunction opposite: #returnType"
 
 	<generated>
@@ -64,15 +64,15 @@ FamixFortran77FType >> pUFunction [
 ]
 
 { #category : #accessing }
-FamixFortran77FType >> pUFunction: anObject [
+FamixFortran77Type >> pUFunction: anObject [
 
 	<generated>
 	pUFunction := anObject
 ]
 
 { #category : #accessing }
-FamixFortran77FType >> variable [
-	"Relation named: #variable type: #FamixFortran77Variable opposite: #fType"
+FamixFortran77Type >> variable [
+	"Relation named: #variable type: #FamixFortran77Variable opposite: #type"
 
 	<generated>
 	<derived>
@@ -80,7 +80,7 @@ FamixFortran77FType >> variable [
 ]
 
 { #category : #accessing }
-FamixFortran77FType >> variable: anObject [
+FamixFortran77Type >> variable: anObject [
 
 	<generated>
 	variable := anObject
