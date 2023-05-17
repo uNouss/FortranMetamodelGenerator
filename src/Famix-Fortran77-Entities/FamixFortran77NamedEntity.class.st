@@ -12,5 +12,13 @@ FamixFortran77NamedEntity class >> annotation [
 	<FMClass: #NamedEntity super: #FamixFortran77Entity>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
+	<abstract>
+	^ self
+]
+
+{ #category : #testing }
+FamixFortran77NamedEntity class >> isAbstract [
+
+	<generated>
+	^ self == FamixFortran77NamedEntity
 ]

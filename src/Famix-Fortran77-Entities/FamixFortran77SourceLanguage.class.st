@@ -12,5 +12,5 @@ FamixFortran77SourceLanguage class >> annotation [
 	<FMClass: #SourceLanguage super: #FamixFortran77Entity>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
+	^ self
 ]

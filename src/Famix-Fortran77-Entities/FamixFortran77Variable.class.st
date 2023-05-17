@@ -7,9 +7,9 @@ Class {
 	#traits : 'FamixTLocalVariable',
 	#classTraits : 'FamixTLocalVariable classTrait',
 	#instVars : [
-		'#fType => FMOne type: #FamixFortran77FType opposite: #variable',
 		'#isEsope => FMProperty defaultValue: false',
-		'#segment => FMProperty'
+		'#segment => FMProperty',
+		'#type => FMOne type: #FamixFortran77Type opposite: #variable'
 	],
 	#category : #'Famix-Fortran77-Entities-Entities'
 }
@@ -20,33 +20,7 @@ FamixFortran77Variable class >> annotation [
 	<FMClass: #Variable super: #FamixFortran77Entity>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
-]
-
-{ #category : #accessing }
-FamixFortran77Variable >> fType [
-	"Relation named: #fType type: #FamixFortran77FType opposite: #variable"
-
-	<generated>
-	^ fType
-]
-
-{ #category : #accessing }
-FamixFortran77Variable >> fType: anObject [
-
-	<generated>
-	fType := anObject
-]
-
-{ #category : #initialization }
-FamixFortran77Variable >> initialize [
-
-	<generated>
-	super initialize.
-
-	"Default value initialization"
-	isEsope := false.
-
+	^ self
 ]
 
 { #category : #accessing }
@@ -55,7 +29,7 @@ FamixFortran77Variable >> isEsope [
 	<FMProperty: #isEsope type: #Boolean defaultValue: false>
 	<generated>
 	<FMComment: 'It is esope attribute variable from segment definition ?'>
-	^ isEsope
+	^ isEsope ifNil: [ isEsope := false ]
 ]
 
 { #category : #accessing }
@@ -77,4 +51,19 @@ FamixFortran77Variable >> segment [
 FamixFortran77Variable >> segment: anObject [
 	<generated>
 	segment := anObject
+]
+
+{ #category : #accessing }
+FamixFortran77Variable >> type [
+	"Relation named: #type type: #FamixFortran77Type opposite: #variable"
+
+	<generated>
+	^ type
+]
+
+{ #category : #accessing }
+FamixFortran77Variable >> type: anObject [
+
+	<generated>
+	type := anObject
 ]

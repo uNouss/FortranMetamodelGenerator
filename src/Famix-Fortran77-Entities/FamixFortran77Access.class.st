@@ -15,5 +15,5 @@ FamixFortran77Access class >> annotation [
 	<FMClass: #Access super: #FamixFortran77Entity>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
+	^ self
 ]

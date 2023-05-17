@@ -18,24 +18,12 @@ FamixFortran77PUMain class >> annotation [
 	<FMClass: #PUMain super: #FamixFortran77ProgramUnit>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
-]
-
-{ #category : #initialization }
-FamixFortran77PUMain >> initialize [
-
-	<generated>
-	super initialize.
-
-	"Default value initialization"
-	symbolTable := Dictionary new.
-
+	^ self
 ]
 
 { #category : #accessing }
 FamixFortran77PUMain >> symbolTable [
-	
-	^ symbolTable
+	^symbolTable ifNil: [ symbolTable := Dictionary new ]
 ]
 
 { #category : #accessing }

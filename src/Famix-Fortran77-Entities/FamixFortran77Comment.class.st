@@ -18,18 +18,7 @@ FamixFortran77Comment class >> annotation [
 	<FMClass: #Comment super: #FamixFortran77SourcedEntity>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
-]
-
-{ #category : #initialization }
-FamixFortran77Comment >> initialize [
-
-	<generated>
-	super initialize.
-
-	"Default value initialization"
-	isEsope := false.
-
+	^ self
 ]
 
 { #category : #accessing }
@@ -38,7 +27,7 @@ FamixFortran77Comment >> isEsope [
 	<FMProperty: #isEsope type: #Boolean defaultValue: false>
 	<generated>
 	<FMComment: 'It is esope comment ?'>
-	^ isEsope
+	^ isEsope ifNil: [ isEsope := false ]
 ]
 
 { #category : #accessing }

@@ -12,5 +12,5 @@ FamixFortran77SourceTextAnchor class >> annotation [
 	<FMClass: #SourceTextAnchor super: #FamixFortran77SourceAnchor>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
+	^ self
 ]

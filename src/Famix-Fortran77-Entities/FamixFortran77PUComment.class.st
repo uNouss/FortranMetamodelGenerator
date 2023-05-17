@@ -15,5 +15,5 @@ FamixFortran77PUComment class >> annotation [
 	<FMClass: #PUComment super: #FamixFortran77ProgramUnit>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
+	^ self
 ]

@@ -18,24 +18,12 @@ FamixFortran77PUBlockdata class >> annotation [
 	<FMClass: #PUBlockdata super: #FamixFortran77ProgramUnit>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
-]
-
-{ #category : #initialization }
-FamixFortran77PUBlockdata >> initialize [
-
-	<generated>
-	super initialize.
-
-	"Default value initialization"
-	symbolTable := Dictionary new.
-
+	^ self
 ]
 
 { #category : #accessing }
 FamixFortran77PUBlockdata >> symbolTable [
-	
-	^ symbolTable
+	^symbolTable ifNil: [ symbolTable := Dictionary new ]
 ]
 
 { #category : #accessing }

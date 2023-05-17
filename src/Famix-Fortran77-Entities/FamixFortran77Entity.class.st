@@ -10,7 +10,15 @@ FamixFortran77Entity class >> annotation [
 	<FMClass: #Entity super: #MooseEntity>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
+	<abstract>
+	^ self
+]
+
+{ #category : #testing }
+FamixFortran77Entity class >> isAbstract [
+
+	<generated>
+	^ self == FamixFortran77Entity
 ]
 
 { #category : #meta }
@@ -36,6 +44,13 @@ FamixFortran77Entity >> isAssociation [
 
 { #category : #testing }
 FamixFortran77Entity >> isInvocation [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixFortran77Entity >> isLocalVariable [
 
 	<generated>
 	^ false

@@ -21,7 +21,7 @@ FamixFortran77ProgramFile class >> annotation [
 	<FMClass: #ProgramFile super: #FamixFortran77NamedEntity>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #adding }
@@ -43,17 +43,6 @@ FamixFortran77ProgramFile >> filename [
 FamixFortran77ProgramFile >> filename: anObject [
 	<generated>
 	filename := anObject
-]
-
-{ #category : #initialization }
-FamixFortran77ProgramFile >> initialize [
-
-	<generated>
-	super initialize.
-
-	"Default value initialization"
-	symbolTable := Dictionary new.
-
 ]
 
 { #category : #accessing }
@@ -81,8 +70,7 @@ FamixFortran77ProgramFile >> programUnitsGroup [
 
 { #category : #accessing }
 FamixFortran77ProgramFile >> symbolTable [
-	
-	^ symbolTable
+	^symbolTable ifNil: [ symbolTable := Dictionary new ]
 ]
 
 { #category : #accessing }

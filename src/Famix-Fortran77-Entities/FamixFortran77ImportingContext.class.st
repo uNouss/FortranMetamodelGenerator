@@ -1,269 +1,282 @@
+"
+This class is used to choose the entities to be imported when loading a model from file.
+It is used by `MiImportingContextPresenter` in a `MiImportModelFromFileDialog` to import a FamixFortran77Model.
+"
 Class {
 	#name : #FamixFortran77ImportingContext,
-	#superclass : #FmxImportingContext,
-	#category : #'Famix-Fortran77-Entities'
+	#superclass : #FamixImportingContext,
+	#category : #'Famix-Fortran77-Entities-Import'
 }
 
-{ #category : #testing }
+{ #category : #accessing }
+FamixFortran77ImportingContext class >> importedMetamodel [
+
+	<generated>
+	^ FamixFortran77Model metamodel
+]
+
+{ #category : #importing }
 FamixFortran77ImportingContext >> importAccess [
+
 	<generated>
-	^ self import: FamixFortran77Access
+	^ self importAssociation: (self class fm3ClassNamed: #Access)
 ]
 
-{ #category : #testing }
+{ #category : #importing }
 FamixFortran77ImportingContext >> importComment [
+
 	<generated>
-	^ self import: FamixFortran77Comment
+	^ self importConcreteEntity: (self class fm3ClassNamed: #Comment)
 ]
 
-{ #category : #testing }
-FamixFortran77ImportingContext >> importEntity [
+{ #category : #importing }
+FamixFortran77ImportingContext >> importEComment [
+
 	<generated>
-	^ self import: FamixFortran77Entity
+	^ self importConcreteEntity: (self class fm3ClassNamed: #EComment)
 ]
 
-{ #category : #testing }
-FamixFortran77ImportingContext >> importFType [
-	<generated>
-	^ self import: FamixFortran77FType
-]
-
-{ #category : #testing }
+{ #category : #importing }
 FamixFortran77ImportingContext >> importIndexedFileAnchor [
+
 	<generated>
-	^ self import: FamixFortran77IndexedFileAnchor
+	^ self importConcreteEntity: (self class fm3ClassNamed: #IndexedFileAnchor)
 ]
 
-{ #category : #testing }
+{ #category : #importing }
 FamixFortran77ImportingContext >> importInvocation [
+
 	<generated>
-	^ self import: FamixFortran77Invocation
+	^ self importAssociation: (self class fm3ClassNamed: #Invocation)
 ]
 
-{ #category : #testing }
-FamixFortran77ImportingContext >> importNamedEntity [
-	<generated>
-	^ self import: FamixFortran77NamedEntity
-]
-
-{ #category : #testing }
+{ #category : #importing }
 FamixFortran77ImportingContext >> importPUBlockdata [
+
 	<generated>
-	^ self import: FamixFortran77PUBlockdata
+	^ self importConcreteEntity: (self class fm3ClassNamed: #PUBlockdata)
 ]
 
-{ #category : #testing }
+{ #category : #importing }
 FamixFortran77ImportingContext >> importPUComment [
+
 	<generated>
-	^ self import: FamixFortran77PUComment
+	^ self importConcreteEntity: (self class fm3ClassNamed: #PUComment)
 ]
 
-{ #category : #testing }
+{ #category : #importing }
 FamixFortran77ImportingContext >> importPUFunction [
+
 	<generated>
-	^ self import: FamixFortran77PUFunction
+	^ self importConcreteEntity: (self class fm3ClassNamed: #PUFunction)
 ]
 
-{ #category : #testing }
+{ #category : #importing }
 FamixFortran77ImportingContext >> importPUMain [
+
 	<generated>
-	^ self import: FamixFortran77PUMain
+	^ self importConcreteEntity: (self class fm3ClassNamed: #PUMain)
 ]
 
-{ #category : #testing }
+{ #category : #importing }
 FamixFortran77ImportingContext >> importPUProcedure [
+
 	<generated>
-	^ self import: FamixFortran77PUProcedure
+	^ self importConcreteEntity: (self class fm3ClassNamed: #PUProcedure)
 ]
 
-{ #category : #testing }
+{ #category : #importing }
 FamixFortran77ImportingContext >> importPUSubroutine [
+
 	<generated>
-	^ self import: FamixFortran77PUSubroutine
+	^ self importConcreteEntity: (self class fm3ClassNamed: #PUSubroutine)
 ]
 
-{ #category : #testing }
+{ #category : #importing }
 FamixFortran77ImportingContext >> importParameter [
+
 	<generated>
-	^ self import: FamixFortran77Parameter
+	^ self importConcreteEntity: (self class fm3ClassNamed: #Parameter)
 ]
 
-{ #category : #testing }
+{ #category : #importing }
 FamixFortran77ImportingContext >> importProgramFile [
+
 	<generated>
-	^ self import: FamixFortran77ProgramFile
+	^ self importConcreteEntity: (self class fm3ClassNamed: #ProgramFile)
 ]
 
-{ #category : #testing }
+{ #category : #importing }
 FamixFortran77ImportingContext >> importProgramUnit [
+
 	<generated>
-	^ self import: FamixFortran77ProgramUnit
+	^ self importConcreteEntity: (self class fm3ClassNamed: #ProgramUnit)
 ]
 
-{ #category : #testing }
-FamixFortran77ImportingContext >> importSourceAnchor [
-	<generated>
-	^ self import: FamixFortran77SourceAnchor
-]
-
-{ #category : #testing }
+{ #category : #importing }
 FamixFortran77ImportingContext >> importSourceLanguage [
+
 	<generated>
-	^ self import: FamixFortran77SourceLanguage
+	^ self importConcreteEntity: (self class fm3ClassNamed: #SourceLanguage)
 ]
 
-{ #category : #testing }
+{ #category : #importing }
 FamixFortran77ImportingContext >> importSourceTextAnchor [
+
 	<generated>
-	^ self import: FamixFortran77SourceTextAnchor
+	^ self importConcreteEntity: (self class fm3ClassNamed: #SourceTextAnchor)
 ]
 
-{ #category : #testing }
-FamixFortran77ImportingContext >> importSourcedEntity [
+{ #category : #importing }
+FamixFortran77ImportingContext >> importType [
+
 	<generated>
-	^ self import: FamixFortran77SourcedEntity
+	^ self importConcreteEntity: (self class fm3ClassNamed: #Type)
 ]
 
-{ #category : #testing }
+{ #category : #importing }
 FamixFortran77ImportingContext >> importUnknownSourceLanguage [
+
 	<generated>
-	^ self import: FamixFortran77UnknownSourceLanguage
+	^ self importConcreteEntity: (self class fm3ClassNamed: #UnknownSourceLanguage)
 ]
 
-{ #category : #testing }
+{ #category : #importing }
 FamixFortran77ImportingContext >> importVariable [
+
 	<generated>
-	^ self import: FamixFortran77Variable
+	^ self importConcreteEntity: (self class fm3ClassNamed: #Variable)
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportAccess [
+
 	<generated>
-	^ self shouldImport: FamixFortran77Access
+	^ self shouldImport: #Access
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportComment [
+
 	<generated>
-	^ self shouldImport: FamixFortran77Comment
+	^ self shouldImport: #Comment
 ]
 
 { #category : #testing }
-FamixFortran77ImportingContext >> shouldImportEntity [
-	<generated>
-	^ self shouldImport: FamixFortran77Entity
-]
+FamixFortran77ImportingContext >> shouldImportEComment [
 
-{ #category : #testing }
-FamixFortran77ImportingContext >> shouldImportFType [
 	<generated>
-	^ self shouldImport: FamixFortran77FType
+	^ self shouldImport: #EComment
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportIndexedFileAnchor [
+
 	<generated>
-	^ self shouldImport: FamixFortran77IndexedFileAnchor
+	^ self shouldImport: #IndexedFileAnchor
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportInvocation [
-	<generated>
-	^ self shouldImport: FamixFortran77Invocation
-]
 
-{ #category : #testing }
-FamixFortran77ImportingContext >> shouldImportNamedEntity [
 	<generated>
-	^ self shouldImport: FamixFortran77NamedEntity
+	^ self shouldImport: #Invocation
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportPUBlockdata [
+
 	<generated>
-	^ self shouldImport: FamixFortran77PUBlockdata
+	^ self shouldImport: #PUBlockdata
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportPUComment [
+
 	<generated>
-	^ self shouldImport: FamixFortran77PUComment
+	^ self shouldImport: #PUComment
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportPUFunction [
+
 	<generated>
-	^ self shouldImport: FamixFortran77PUFunction
+	^ self shouldImport: #PUFunction
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportPUMain [
+
 	<generated>
-	^ self shouldImport: FamixFortran77PUMain
+	^ self shouldImport: #PUMain
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportPUProcedure [
+
 	<generated>
-	^ self shouldImport: FamixFortran77PUProcedure
+	^ self shouldImport: #PUProcedure
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportPUSubroutine [
+
 	<generated>
-	^ self shouldImport: FamixFortran77PUSubroutine
+	^ self shouldImport: #PUSubroutine
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportParameter [
+
 	<generated>
-	^ self shouldImport: FamixFortran77Parameter
+	^ self shouldImport: #Parameter
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportProgramFile [
+
 	<generated>
-	^ self shouldImport: FamixFortran77ProgramFile
+	^ self shouldImport: #ProgramFile
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportProgramUnit [
-	<generated>
-	^ self shouldImport: FamixFortran77ProgramUnit
-]
 
-{ #category : #testing }
-FamixFortran77ImportingContext >> shouldImportSourceAnchor [
 	<generated>
-	^ self shouldImport: FamixFortran77SourceAnchor
+	^ self shouldImport: #ProgramUnit
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportSourceLanguage [
+
 	<generated>
-	^ self shouldImport: FamixFortran77SourceLanguage
+	^ self shouldImport: #SourceLanguage
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportSourceTextAnchor [
+
 	<generated>
-	^ self shouldImport: FamixFortran77SourceTextAnchor
+	^ self shouldImport: #SourceTextAnchor
 ]
 
 { #category : #testing }
-FamixFortran77ImportingContext >> shouldImportSourcedEntity [
+FamixFortran77ImportingContext >> shouldImportType [
+
 	<generated>
-	^ self shouldImport: FamixFortran77SourcedEntity
+	^ self shouldImport: #Type
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportUnknownSourceLanguage [
+
 	<generated>
-	^ self shouldImport: FamixFortran77UnknownSourceLanguage
+	^ self shouldImport: #UnknownSourceLanguage
 ]
 
 { #category : #testing }
 FamixFortran77ImportingContext >> shouldImportVariable [
+
 	<generated>
-	^ self shouldImport: FamixFortran77Variable
+	^ self shouldImport: #Variable
 ]

@@ -12,5 +12,13 @@ FamixFortran77SourceAnchor class >> annotation [
 	<FMClass: #SourceAnchor super: #FamixFortran77Entity>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
+	<abstract>
+	^ self
+]
+
+{ #category : #testing }
+FamixFortran77SourceAnchor class >> isAbstract [
+
+	<generated>
+	^ self == FamixFortran77SourceAnchor
 ]

@@ -15,5 +15,5 @@ FamixFortran77IndexedFileAnchor class >> annotation [
 	<FMClass: #IndexedFileAnchor super: #FamixFortran77SourceAnchor>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
+	^ self
 ]

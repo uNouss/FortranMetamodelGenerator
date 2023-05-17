@@ -15,5 +15,5 @@ FamixFortran77Parameter class >> annotation [
 	<FMClass: #Parameter super: #FamixFortran77Entity>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
+	^ self
 ]

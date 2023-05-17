@@ -15,5 +15,5 @@ FamixFortran77Invocation class >> annotation [
 	<FMClass: #Invocation super: #FamixFortran77Entity>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
+	^ self
 ]

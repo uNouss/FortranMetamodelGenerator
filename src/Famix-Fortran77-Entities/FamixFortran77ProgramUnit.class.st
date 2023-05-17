@@ -18,7 +18,7 @@ FamixFortran77ProgramUnit class >> annotation [
 	<FMClass: #ProgramUnit super: #FamixFortran77NamedEntity>
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #accessing }
