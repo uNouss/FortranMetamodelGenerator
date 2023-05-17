@@ -48,14 +48,10 @@ Class {
 		'puProcedure',
 		'puSubroutine',
 		'variable',
-		'include',
-		'tWithBody',
-		'tStaticInvocable',
-		'tStaticInvocation',
-		'tWithStaticInvocations',
 		'indexedFileAnchor',
-		'fType',
-		'programFile'
+		'programFile',
+		'type',
+		'eComment'
 	],
 	#category : #'Famix-Fortran77-Generator'
 }
@@ -107,8 +103,9 @@ FamixFortran77Generator >> defineClasses [
 
 	"body := builder newClassNamed: #Body comment: self bodyEntityComment."
 	comment comment: self fCommentEntityComment.
+	eComment := builder newClassNamed: #EComment comment: 'Esope comment'.
 
-	fType := builder newClassNamed: #FType comment: self fTypeComment.
+	type := builder newClassNamed: #Type comment: self typeComment.
 
 	programFile := builder newClassNamed: #ProgramFile comment: self fileEntityComment.
 
@@ -166,8 +163,8 @@ FamixFortran77Generator >> defineHierarchy [
 
 	access --|> #TAccess.
 	access --|> #TEntityMetaLevelDependency.
-
-	fType --|> #TType.
+	
+	eComment --|> comment.
 
 	programFile --|> namedEntity.
 	programFile --|> #TCompilationUnit.
@@ -213,6 +210,8 @@ FamixFortran77Generator >> defineHierarchy [
 	puSubroutine --|> puProcedure.
 
 	variable --|> #TLocalVariable.
+
+	type --|> #TType.
 ]
 
 { #category : #definition }
@@ -223,8 +222,8 @@ FamixFortran77Generator >> defineProperties [
 	(comment property: #isEsope type: #Boolean defaultValue: false) 
 		comment: 'It is esope comment ?'.
 
-	(fType property: #length type: #Number) comment: 'length attribute'.
-	(fType property: #kind type: #Number) comment: 'kind attribute'.
+	(type property: #length type: #Number) comment: 'length attribute'.
+	(type property: #kind type: #Number) comment: 'kind attribute'.
 
 	"(parameter property: #variable type: #Object) comment:
 		'variable declaration related to this parameter'."
@@ -250,23 +249,17 @@ FamixFortran77Generator >> defineProperties [
 	(puFunction property: #isEsope type: #Boolean defaultValue: false) 
 		comment: 'It is kind of esope function ?'.
 
-	(puFunction
-		 property: #symbolTable
-		 type: #Object
-		 defaultValue: 'Dictionary new') comment:
-		'Table of symbols for function'.
-
 	(puMain
 		 property: #symbolTable
 		 type: #Object
 		 defaultValue: 'Dictionary new') comment:
 		'Table of symbols for program'.
 
-	(puSubroutine
+	(puProcedure
 		 property: #symbolTable
 		 type: #Object
 		 defaultValue: 'Dictionary new') comment:
-		'Table of symbols for subroutine'.
+		'Table of symbols for procedure(function, subroutine)'.
 
 	(variable property: #isEsope type: #Boolean defaultValue: false) 
 		comment: 'It is esope attribute variable from segment definition ?'.
@@ -278,13 +271,15 @@ FamixFortran77Generator >> defineProperties [
 { #category : #definition }
 FamixFortran77Generator >> defineRelations [
 
+	self flag: #FIXME. "Comment éviter de lier variable et type ? sachant qu'une variable à déjà un type"
+	"Même chose pour la fonction"
 	super defineRelations.
 
 	programFile <>-* programUnit.
 
-	(puFunction property: #returnType) - fType.
+	(puFunction property: #returnType) - type.
 
-	variable - fType
+	variable - type
 ]
 
 { #category : #definition }
@@ -308,12 +303,6 @@ FamixFortran77Generator >> fCommentEntityComment [
 	^ 'a fortran comment'
 ]
 
-{ #category : #definition }
-FamixFortran77Generator >> fTypeComment [
-
-	^ 'Im a Fortran Type'
-]
-
 { #category : #'class comment' }
 FamixFortran77Generator >> fileEntityComment [
 
@@ -322,16 +311,11 @@ FamixFortran77Generator >> fileEntityComment [
 
 { #category : #definition }
 FamixFortran77Generator >> indexedFileAnchorComment [
-
-	self flag: #TODO. "complete comment"
 	^ 'Its the sourceAnchor (position of the token) in the source file (startLine@startColumn)-(endLine@endColumn).'
 ]
 
 { #category : #'class comment' }
 FamixFortran77Generator >> invocationEntityComment [
-
-	self flag: #FIXME. "on invoque avec des arguments qui matchent les parametres
-	donc les arguments doivent être dans invocations ?"
 	^ 'an invocation of procedure inside a procedure or main program'
 ]
 
@@ -339,7 +323,7 @@ FamixFortran77Generator >> invocationEntityComment [
 FamixFortran77Generator >> newBuilder [
 
 	^ super newBuilder
-		  withImportingContext;
+		  withFileImport;
 		  yourself
 ]
 
@@ -391,11 +375,13 @@ FamixFortran77Generator >> puSubroutineEntityComment [
 	^ 'a subroutine procedure'
 ]
 
+{ #category : #definition }
+FamixFortran77Generator >> typeComment [
+
+	^ 'Im a Fortran Type'
+]
+
 { #category : #'class comment' }
 FamixFortran77Generator >> variableEntityComment [
-
-	self flag: #FIXME. "a variable can be a constant(fortran keyword parameter)
-	 or have other attributes.
-	 a variable can have alose a default value in case of paramter (must have a value at declaration), ... can have a type (exclipicitly declared or kind of infered)"
 	^ 'a local variable of a program unit'
 ]
