@@ -4,8 +4,8 @@ a main program
 Class {
 	#name : #FamixFortran77PUMain,
 	#superclass : #FamixFortran77ProgramUnit,
-	#traits : 'FamixTWithAccesses + FamixTWithInvocations + FamixTWithLocalVariables',
-	#classTraits : 'FamixTWithAccesses classTrait + FamixTWithInvocations classTrait + FamixTWithLocalVariables classTrait',
+	#traits : 'FamixTWithAccesses + FamixTWithInvocations + FamixTWithLocalVariables + FamixTWithStatements',
+	#classTraits : 'FamixTWithAccesses classTrait + FamixTWithInvocations classTrait + FamixTWithLocalVariables classTrait + FamixTWithStatements classTrait',
 	#instVars : [
 		'#symbolTable => FMProperty defaultValue: ((Dictionary new))'
 	],

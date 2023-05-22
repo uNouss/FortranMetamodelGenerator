@@ -8,8 +8,7 @@ Class {
 	#classTraits : 'FamixTLocalVariable classTrait',
 	#instVars : [
 		'#isEsope => FMProperty defaultValue: false',
-		'#segment => FMProperty',
-		'#type => FMOne type: #FamixFortran77Type opposite: #variable'
+		'#segment => FMProperty'
 	],
 	#category : #'Famix-Fortran77-Entities-Entities'
 }
@@ -51,19 +50,4 @@ FamixFortran77Variable >> segment [
 FamixFortran77Variable >> segment: anObject [
 	<generated>
 	segment := anObject
-]
-
-{ #category : #accessing }
-FamixFortran77Variable >> type [
-	"Relation named: #type type: #FamixFortran77Type opposite: #variable"
-
-	<generated>
-	^ type
-]
-
-{ #category : #accessing }
-FamixFortran77Variable >> type: anObject [
-
-	<generated>
-	type := anObject
 ]

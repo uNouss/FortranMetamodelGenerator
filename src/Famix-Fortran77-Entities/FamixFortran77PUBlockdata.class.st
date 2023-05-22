@@ -4,8 +4,8 @@ a block data for common variable
 Class {
 	#name : #FamixFortran77PUBlockdata,
 	#superclass : #FamixFortran77ProgramUnit,
-	#traits : 'FamixTWithAccesses + FamixTWithLocalVariables',
-	#classTraits : 'FamixTWithAccesses classTrait + FamixTWithLocalVariables classTrait',
+	#traits : 'FamixTWithAccesses + FamixTWithLocalVariables + FamixTWithStatements',
+	#classTraits : 'FamixTWithAccesses classTrait + FamixTWithLocalVariables classTrait + FamixTWithStatements classTrait',
 	#instVars : [
 		'#symbolTable => FMProperty defaultValue: ((Dictionary new))'
 	],

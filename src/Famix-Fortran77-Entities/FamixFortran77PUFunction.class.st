@@ -4,9 +4,10 @@ a function procedure
 Class {
 	#name : #FamixFortran77PUFunction,
 	#superclass : #FamixFortran77PUProcedure,
+	#traits : 'FamixTTypedEntity',
+	#classTraits : 'FamixTTypedEntity classTrait',
 	#instVars : [
-		'#isEsope => FMProperty defaultValue: false',
-		'#returnType => FMOne type: #FamixFortran77Type opposite: #pUFunction'
+		'#isEsope => FMProperty defaultValue: false'
 	],
 	#category : #'Famix-Fortran77-Entities-Entities'
 }
@@ -33,19 +34,4 @@ FamixFortran77PUFunction >> isEsope [
 FamixFortran77PUFunction >> isEsope: anObject [
 	<generated>
 	isEsope := anObject
-]
-
-{ #category : #accessing }
-FamixFortran77PUFunction >> returnType [
-	"Relation named: #returnType type: #FamixFortran77Type opposite: #pUFunction"
-
-	<generated>
-	^ returnType
-]
-
-{ #category : #accessing }
-FamixFortran77PUFunction >> returnType: anObject [
-
-	<generated>
-	returnType := anObject
 ]

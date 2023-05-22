@@ -43,6 +43,13 @@ FamixFortran77Entity >> isAssociation [
 ]
 
 { #category : #testing }
+FamixFortran77Entity >> isBehavioural [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixFortran77Entity >> isInvocation [
 
 	<generated>
