@@ -182,22 +182,24 @@ FamixFortran77Generator >> defineHierarchy [
 	programUnit --|> #TSourceEntity.
 	programUnit --|> #TEntityMetaLevelDependency.
 	programUnit --|> #TWithComments.
-
-
 	programUnit --|> namedEntity.
+
 	puBlockdata --|> programUnit.
 	puBlockdata --|> #TWithAccesses.
 	puBlockdata --|> #TWithLocalVariables.
+	puBlockdata --|> #TWithStatements.
 	
 	puComment --|> programUnit.
 	puComment --|> #TComment.
 
 	puFunction --|> puProcedure.
+	puFunction --|> #TTypedEntity.
 
 	puMain --|> programUnit.
 	puMain --|> #TWithAccesses.
 	puMain --|> #TWithInvocations.
 	puMain --|> #TWithLocalVariables.
+	puMain --|> #TWithStatements.
 
 	puProcedure --|> programUnit.
 	puProcedure --|> #THasSignature.
@@ -206,6 +208,7 @@ FamixFortran77Generator >> defineHierarchy [
 	puProcedure --|> #TWithInvocations.
 	puProcedure --|> #TWithLocalVariables.
 	puProcedure --|> #TWithParameters.
+	puProcedure --|> #TWithStatements.
 
 	puSubroutine --|> puProcedure.
 
@@ -271,15 +274,9 @@ FamixFortran77Generator >> defineProperties [
 { #category : #definition }
 FamixFortran77Generator >> defineRelations [
 
-	self flag: #FIXME. "Comment éviter de lier variable et type ? sachant qu'une variable à déjà un type"
-	"Même chose pour la fonction"
 	super defineRelations.
 
 	programFile <>-* programUnit.
-
-	(puFunction property: #returnType) - type.
-
-	variable - type
 ]
 
 { #category : #definition }
