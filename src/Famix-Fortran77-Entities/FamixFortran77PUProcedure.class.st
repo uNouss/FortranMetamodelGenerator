@@ -21,6 +21,11 @@ FamixFortran77PUProcedure class >> annotation [
 	^ self
 ]
 
+{ #category : #adding }
+FamixFortran77PUProcedure >> isInvocable [
+	^true
+]
+
 { #category : #accessing }
 FamixFortran77PUProcedure >> symbolTable [
 	^symbolTable ifNil: [ symbolTable := Dictionary new ]
