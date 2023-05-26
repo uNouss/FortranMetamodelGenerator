@@ -21,6 +21,11 @@ FamixFortran77ProgramUnit class >> annotation [
 	^ self
 ]
 
+{ #category : #testing }
+FamixFortran77ProgramUnit >> isInvocable [
+	^false
+]
+
 { #category : #accessing }
 FamixFortran77ProgramUnit >> programFile [
 	"Relation named: #programFile type: #FamixFortran77ProgramFile opposite: #programUnits"

@@ -21,7 +21,7 @@ FamixFortran77PUProcedure class >> annotation [
 	^ self
 ]
 
-{ #category : #adding }
+{ #category : #testing }
 FamixFortran77PUProcedure >> isInvocable [
 	^true
 ]
