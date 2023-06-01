@@ -99,62 +99,69 @@ FamixFortran77Generator >> defineClasses [
 	super defineClasses.
 
 	access := builder
-		          newClassNamed: #Access
-		          comment: self accessEntityComment.
+		newClassNamed: #Access
+		comment: self accessEntityComment.
 
-	"body := builder newClassNamed: #Body comment: self bodyEntityComment."
 	comment comment: self fCommentEntityComment.
 	eComment := builder newClassNamed: #EComment comment: 'Esope comment'.
+	
+	eEntity := builder 
+		newClassNamed: #EEntity 
+		comment: 'Esope entity holding info from esosl, esoat, esoar'.
 
-	type := builder newClassNamed: #Type comment: self typeComment.
+	type := builder 
+		newClassNamed: #Type
+		comment: self typeComment.
 
-	programFile := builder newClassNamed: #ProgramFile comment: self fileEntityComment.
+	programFile := builder 
+		newClassNamed: #ProgramFile
+		comment: self fileEntityComment.
 
 	indexedFileAnchor := builder
-		                     newClassNamed: #IndexedFileAnchor
-		                     comment: self indexedFileAnchorComment.
+		newClassNamed: #IndexedFileAnchor
+		comment: self indexedFileAnchorComment.
 
 	invocation := builder
-		              newClassNamed: #Invocation
-		              comment: self invocationEntityComment.
+		newClassNamed: #Invocation
+		comment: self invocationEntityComment.
 
 	"include := builder newClassNamed: #Include comment: ''."
 
 	parameter := builder
-		             newClassNamed: #Parameter
-		             comment: self parameterEntityComment.
+		newClassNamed: #Parameter
+		comment: self parameterEntityComment.
 
 	programUnit := builder
-		               newClassNamed: #ProgramUnit
-		               comment: self programUnitEntityComment.
+		newClassNamed: #ProgramUnit
+		comment: self programUnitEntityComment.
 
 	puBlockdata := builder
-		               newClassNamed: #PUBlockdata
-		               comment: self puBlockdataEntityComment.
+		newClassNamed: #PUBlockdata
+		comment: self puBlockdataEntityComment.
 
 	puComment := builder
-		             newClassNamed: #PUComment
-		             comment: self puCommentEntityComment.
+		newClassNamed: #PUComment
+		comment: self puCommentEntityComment.
 
 	puFunction := builder
-		              newClassNamed: #PUFunction
-		              comment: self puFunctionEntityComment.
+		newClassNamed: #PUFunction
+		comment: self puFunctionEntityComment.
 
 	puMain := builder
-		          newClassNamed: #PUMain
-		          comment: self puMainEntityComment.
+		newClassNamed: #PUMain
+		comment: self puMainEntityComment.
 
 	puProcedure := builder
-		               newClassNamed: #PUProcedure
-		               comment: self puProcedureEntityComment.
+		newClassNamed: #PUProcedure
+		comment: self puProcedureEntityComment.
 
 	puSubroutine := builder
-		                newClassNamed: #PUSubroutine
-		                comment: self puSubroutineEntityComment.
+		newClassNamed: #PUSubroutine
+		comment: self puSubroutineEntityComment.
 
 	variable := builder
-		            newClassNamed: #Variable
-		            comment: self variableEntityComment
+		newClassNamed: #Variable
+		comment: self variableEntityComment
 ]
 
 { #category : #definition }
@@ -166,6 +173,7 @@ FamixFortran77Generator >> defineHierarchy [
 	access --|> #TEntityMetaLevelDependency.
 	
 	eComment --|> comment.
+	eEntity --|> namedEntity.
 
 	programFile --|> namedEntity.
 	programFile --|> #TCompilationUnit.
@@ -249,6 +257,7 @@ FamixFortran77Generator >> defineProperties [
 		 type: #Object
 		 defaultValue: 'Dictionary new') comment:
 		'Table of symbols for blockdata'.
+	self implicitPropertyFor: puBlockdata.
 
 	(puFunction property: #isEsope type: #Boolean defaultValue: false) 
 		comment: 'It is kind of esope function ?'.
@@ -258,12 +267,14 @@ FamixFortran77Generator >> defineProperties [
 		 type: #Object
 		 defaultValue: 'Dictionary new') comment:
 		'Table of symbols for program'.
+	self implicitPropertyFor: puMain.
 
 	(puProcedure
 		 property: #symbolTable
 		 type: #Object
 		 defaultValue: 'Dictionary new') comment:
 		'Table of symbols for procedure(function, subroutine)'.
+	self implicitPropertyFor: puProcedure.
 
 	(variable property: #isEsope type: #Boolean defaultValue: false) 
 		comment: 'It is esope attribute variable from segment definition ?'.
@@ -305,6 +316,15 @@ FamixFortran77Generator >> fCommentEntityComment [
 FamixFortran77Generator >> fileEntityComment [
 
 	^ 'a fortran file'
+]
+
+{ #category : #'private - utility' }
+FamixFortran77Generator >> implicitPropertyFor: anInstanceVar [
+	(anInstanceVar
+		 property: #dicImplicit
+		 type: #Object
+		 defaultValue: 'Dictionary new') comment:
+		'dictionary to carry implicits declaration rule for each type'.
 ]
 
 { #category : #'class comment' }

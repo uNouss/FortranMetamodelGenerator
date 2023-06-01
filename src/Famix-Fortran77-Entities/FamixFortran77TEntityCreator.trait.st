@@ -38,6 +38,13 @@ FamixFortran77TEntityCreator >> newEComment [
 ]
 
 { #category : #'entity creation' }
+FamixFortran77TEntityCreator >> newEEntity [
+
+	<generated>
+	^ self add: FamixFortran77EEntity new
+]
+
+{ #category : #'entity creation' }
 FamixFortran77TEntityCreator >> newIndexedFileAnchor [
 
 	<generated>

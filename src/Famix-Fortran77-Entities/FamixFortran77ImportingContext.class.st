@@ -37,6 +37,13 @@ FamixFortran77ImportingContext >> importEComment [
 ]
 
 { #category : #importing }
+FamixFortran77ImportingContext >> importEEntity [
+
+	<generated>
+	^ self importConcreteEntity: (self class fm3ClassNamed: #EEntity)
+]
+
+{ #category : #importing }
 FamixFortran77ImportingContext >> importIndexedFileAnchor [
 
 	<generated>
@@ -167,6 +174,13 @@ FamixFortran77ImportingContext >> shouldImportEComment [
 
 	<generated>
 	^ self shouldImport: #EComment
+]
+
+{ #category : #testing }
+FamixFortran77ImportingContext >> shouldImportEEntity [
+
+	<generated>
+	^ self shouldImport: #EEntity
 ]
 
 { #category : #testing }

@@ -7,6 +7,7 @@ Class {
 	#traits : 'FamixTWithAccesses + FamixTWithInvocations + FamixTWithLocalVariables + FamixTWithStatements',
 	#classTraits : 'FamixTWithAccesses classTrait + FamixTWithInvocations classTrait + FamixTWithLocalVariables classTrait + FamixTWithStatements classTrait',
 	#instVars : [
+		'#dicImplicit => FMProperty defaultValue: ((Dictionary new))',
 		'#symbolTable => FMProperty defaultValue: ((Dictionary new))'
 	],
 	#category : #'Famix-Fortran77-Entities-Entities'
@@ -19,6 +20,24 @@ FamixFortran77PUMain class >> annotation [
 	<package: #'Famix-Fortran77-Entities'>
 	<generated>
 	^ self
+]
+
+{ #category : #accessing }
+FamixFortran77PUMain >> dicImplicit [
+
+	^ dicImplicit
+]
+
+{ #category : #accessing }
+FamixFortran77PUMain >> dicImplicit: anObject [
+	<generated>
+	dicImplicit := anObject
+]
+
+{ #category : #initialization }
+FamixFortran77PUMain >> initialize [ 
+	super initialize.
+	dicImplicit := self defaultImplicit.
 ]
 
 { #category : #accessing }

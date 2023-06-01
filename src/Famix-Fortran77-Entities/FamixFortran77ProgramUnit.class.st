@@ -21,6 +21,19 @@ FamixFortran77ProgramUnit class >> annotation [
 	^ self
 ]
 
+{ #category : #implicit }
+FamixFortran77ProgramUnit >> defaultImplicit [
+	^(($a to: $z)
+		collect: [ :char | ('ijklmn' includes: char)
+			ifTrue: [ char -> #integer ]
+			ifFalse: [ char -> #real ] ]) asDictionary
+]
+
+{ #category : #testing }
+FamixFortran77ProgramUnit >> implicits [
+	^self attributeAt: #implicits ifAbsent: [  ] 
+]
+
 { #category : #testing }
 FamixFortran77ProgramUnit >> isInvocable [
 	^false
