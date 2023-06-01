@@ -51,7 +51,8 @@ Class {
 		'indexedFileAnchor',
 		'programFile',
 		'type',
-		'eComment'
+		'eComment',
+		'eEntity'
 	],
 	#category : #'Famix-Fortran77-Generator'
 }
@@ -306,7 +307,7 @@ FamixFortran77Generator >> fileEntityComment [
 	^ 'a fortran file'
 ]
 
-{ #category : #definition }
+{ #category : #'class comment' }
 FamixFortran77Generator >> indexedFileAnchorComment [
 	^ 'Its the sourceAnchor (position of the token) in the source file (startLine@startColumn)-(endLine@endColumn).'
 ]
@@ -372,7 +373,7 @@ FamixFortran77Generator >> puSubroutineEntityComment [
 	^ 'a subroutine procedure'
 ]
 
-{ #category : #definition }
+{ #category : #'class comment' }
 FamixFortran77Generator >> typeComment [
 
 	^ 'Im a Fortran Type'
